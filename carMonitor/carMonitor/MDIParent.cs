@@ -17,6 +17,10 @@ namespace carMonitor
         public MDIParent()
         {
             InitializeComponent();
+            // 添加皮肤
+            //string path = Environment.CurrentDirectory + "\\OneBlue.ssk";
+            //string path = Environment.CurrentDirectory + "\\MacOS.ssk";
+            //this.skinEngine1.SkinFile = path;
         }
 
         private void ShowNewForm(object sender, EventArgs e)

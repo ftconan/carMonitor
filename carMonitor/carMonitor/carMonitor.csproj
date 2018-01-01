@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IrisSkin2, Version=2006.3.22.45, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IrisSkin.2.0.0\lib\net40\IrisSkin2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.10.5\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
@@ -81,6 +85,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -90,6 +95,70 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Skins\Calmness.ssk" />
+    <None Include="Skins\CalmnessColor1.ssk" />
+    <None Include="Skins\CalmnessColor2.ssk" />
+    <None Include="Skins\DeepCyan.ssk" />
+    <None Include="Skins\DeepGreen.ssk" />
+    <None Include="Skins\DeepOrange.ssk" />
+    <None Include="Skins\DiamondBlue.ssk" />
+    <None Include="Skins\DiamondGreen.ssk" />
+    <None Include="Skins\Eighteen.ssk" />
+    <None Include="Skins\EighteenColor1.ssk" />
+    <None Include="Skins\EighteenColor2.ssk" />
+    <None Include="Skins\Emerald.ssk" />
+    <None Include="Skins\EmeraldColor1.ssk" />
+    <None Include="Skins\EmeraldColor2.ssk" />
+    <None Include="Skins\EmeraldColor3.ssk" />
+    <None Include="Skins\GlassBrown.ssk" />
+    <None Include="Skins\GlassGreen.ssk" />
+    <None Include="Skins\GlassOrange.ssk" />
+    <None Include="Skins\Longhorn.ssk" />
+    <None Include="Skins\MacOS.ssk" />
+    <None Include="Skins\Midsummer.ssk" />
+    <None Include="Skins\MidsummerColor1.ssk" />
+    <None Include="Skins\MidsummerColor2.ssk" />
+    <None Include="Skins\MidsummerColor3.ssk" />
+    <None Include="Skins\MP10.ssk" />
+    <None Include="Skins\MSN.ssk" />
+    <None Include="Skins\OneBlue.ssk" />
+    <None Include="Skins\OneCyan.ssk" />
+    <None Include="Skins\OneGreen.ssk" />
+    <None Include="Skins\OneOrange.ssk" />
+    <None Include="Skins\Page.ssk" />
+    <None Include="Skins\PageColor1.ssk" />
+    <None Include="Skins\PageColor2.ssk" />
+    <None Include="Skins\RealOne.ssk" />
+    <None Include="Skins\Silver.ssk" />
+    <None Include="Skins\SilverColor1.ssk" />
+    <None Include="Skins\SilverColor2.ssk" />
+    <None Include="Skins\SportsBlack.ssk" />
+    <None Include="Skins\SportsBlue.ssk" />
+    <None Include="Skins\SportsCyan.ssk" />
+    <None Include="Skins\SportsGreen.ssk" />
+    <None Include="Skins\SportsOrange.ssk" />
+    <None Include="Skins\SteelBlack.ssk" />
+    <None Include="Skins\SteelBlue.ssk" />
+    <None Include="Skins\vista1.ssk" />
+    <None Include="Skins\vista1_green.ssk" />
+    <None Include="Skins\Vista2_color1.ssk" />
+    <None Include="Skins\Vista2_color2.ssk" />
+    <None Include="Skins\Vista2_color3.ssk" />
+    <None Include="Skins\Vista2_color4.ssk" />
+    <None Include="Skins\Vista2_color5.ssk" />
+    <None Include="Skins\Vista2_color6.ssk" />
+    <None Include="Skins\Vista2_color7.ssk" />
+    <None Include="Skins\Warm.ssk" />
+    <None Include="Skins\WarmColor1.ssk" />
+    <None Include="Skins\WarmColor2.ssk" />
+    <None Include="Skins\WarmColor3.ssk" />
+    <None Include="Skins\Wave.ssk" />
+    <None Include="Skins\WaveColor1.ssk" />
+    <None Include="Skins\WaveColor2.ssk" />
+    <None Include="Skins\XPBlue.ssk" />
+    <None Include="Skins\XPGreen.ssk" />
+    <None Include="Skins\XPOrange.ssk" />
+    <None Include="Skins\XPSilver.ssk" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -99,6 +168,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\count.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\device.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini_car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sport_car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sportcar.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
