@@ -19,7 +19,6 @@ namespace carMonitor
             InitializeComponent();
             // 添加皮肤
             //string path = Environment.CurrentDirectory + "\\OneBlue.ssk";
-            //string path = Environment.CurrentDirectory + "\\MacOS.ssk";
             //this.skinEngine1.SkinFile = path;
         }
 
@@ -103,7 +102,7 @@ namespace carMonitor
             //frmMonitor frm1 = new frmMonitor();     //创建一个子窗体
             //frm1.MdiParent = this;                 //子窗体在父窗体中显现
             //frm1.Show();                           //子窗体显现
-            this.tableLayoutPanel2.Hide();
+            this.tlpMonitor.Hide();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
