@@ -54,6 +54,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlarm.Designer.cs">
+      <DependentUpon>frmAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCar.Designer.cs">
+      <DependentUpon>frmCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCount.Designer.cs">
+      <DependentUpon>frmCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDevice.Designer.cs">
+      <DependentUpon>frmDevice.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +90,24 @@
     <Compile Include="frmMonitor.Designer.cs">
       <DependentUpon>frmMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPerson.Designer.cs">
+      <DependentUpon>frmPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSystem.Designer.cs">
+      <DependentUpon>frmSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTag.Designer.cs">
+      <DependentUpon>frmTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDIParent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,11 +116,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAlarm.resx">
+      <DependentUpon>frmAlarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCount.resx">
+      <DependentUpon>frmCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDevice.resx">
+      <DependentUpon>frmDevice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMonitor.resx">
       <DependentUpon>frmMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPerson.resx">
+      <DependentUpon>frmPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSystem.resx">
+      <DependentUpon>frmSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTag.resx">
+      <DependentUpon>frmTag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIParent.resx">
       <DependentUpon>MDIParent.cs</DependentUpon>

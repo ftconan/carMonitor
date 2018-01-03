@@ -18,7 +18,7 @@ namespace carMonitor
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void frmMonitor_Load(object sender, EventArgs e)
         {
             string str = "Server=localhost;User ID=root;Password=root;Database=car";
             MySqlConnection con = new MySqlConnection(str);//实例化链接

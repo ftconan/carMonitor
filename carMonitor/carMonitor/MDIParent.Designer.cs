@@ -62,14 +62,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.tlpMonitor = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpAlarm = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpCount = new System.Windows.Forms.TableLayoutPanel();
-            this.tplTag = new System.Windows.Forms.TableLayoutPanel();
-            this.tplPerson = new System.Windows.Forms.TableLayoutPanel();
-            this.tplCar = new System.Windows.Forms.TableLayoutPanel();
-            this.tplDevice = new System.Windows.Forms.TableLayoutPanel();
-            this.tplSystem = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -95,13 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.tlpMonitor.SuspendLayout();
-            this.tlpAlarm.SuspendLayout();
-            this.tlpCount.SuspendLayout();
-            this.tplTag.SuspendLayout();
-            this.tplPerson.SuspendLayout();
-            this.tplCar.SuspendLayout();
-            this.tplDevice.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -141,7 +127,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1182, 120);
             this.tableLayoutPanel1.TabIndex = 4;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // panel16
             // 
@@ -173,7 +158,7 @@
             // 
             this.pictureBox7.BackgroundImage = global::carMonitor.Properties.Resources.device;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(34, 3);
+            this.pictureBox7.Location = new System.Drawing.Point(41, 6);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(72, 72);
             this.pictureBox7.TabIndex = 1;
@@ -271,6 +256,7 @@
             this.labTag.Size = new System.Drawing.Size(89, 20);
             this.labTag.TabIndex = 0;
             this.labTag.Text = "标签管理";
+            this.labTag.Click += new System.EventHandler(this.labTag_Click);
             // 
             // panel8
             // 
@@ -292,6 +278,7 @@
             this.labCount.Size = new System.Drawing.Size(89, 20);
             this.labCount.TabIndex = 0;
             this.labCount.Text = "查询统计";
+            this.labCount.Click += new System.EventHandler(this.labCount_Click);
             // 
             // panel7
             // 
@@ -313,6 +300,7 @@
             this.labCar.Size = new System.Drawing.Size(89, 20);
             this.labCar.TabIndex = 0;
             this.labCar.Text = "车辆管理";
+            this.labCar.Click += new System.EventHandler(this.labCar_Click);
             // 
             // panel6
             // 
@@ -334,6 +322,7 @@
             this.labPerson.Size = new System.Drawing.Size(89, 20);
             this.labPerson.TabIndex = 0;
             this.labPerson.Text = "人员管理";
+            this.labPerson.Click += new System.EventHandler(this.labPerson_Click);
             // 
             // panel5
             // 
@@ -355,6 +344,7 @@
             this.labSystem.Size = new System.Drawing.Size(89, 20);
             this.labSystem.TabIndex = 0;
             this.labSystem.Text = "系统管理";
+            this.labSystem.Click += new System.EventHandler(this.labSystem_Click);
             // 
             // panel4
             // 
@@ -376,6 +366,7 @@
             this.labDevice.Size = new System.Drawing.Size(89, 20);
             this.labDevice.TabIndex = 0;
             this.labDevice.Text = "基站管理";
+            this.labDevice.Click += new System.EventHandler(this.labDevice_Click);
             // 
             // panel3
             // 
@@ -397,6 +388,7 @@
             this.labAlarm.Size = new System.Drawing.Size(89, 20);
             this.labAlarm.TabIndex = 0;
             this.labAlarm.Text = "报警管理";
+            this.labAlarm.Click += new System.EventHandler(this.labAlarm_Click);
             // 
             // panel1
             // 
@@ -456,124 +448,17 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // tlpMonitor
+            // tableLayoutPanel2
             // 
-            this.tlpMonitor.BackColor = System.Drawing.Color.White;
-            this.tlpMonitor.ColumnCount = 1;
-            this.tlpMonitor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpMonitor.Controls.Add(this.tlpAlarm, 0, 0);
-            this.tlpMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpMonitor.ForeColor = System.Drawing.Color.White;
-            this.tlpMonitor.Location = new System.Drawing.Point(0, 120);
-            this.tlpMonitor.Name = "tlpMonitor";
-            this.tlpMonitor.RowCount = 1;
-            this.tlpMonitor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpMonitor.Size = new System.Drawing.Size(1182, 633);
-            this.tlpMonitor.TabIndex = 5;
-            // 
-            // tlpAlarm
-            // 
-            this.tlpAlarm.BackColor = System.Drawing.Color.White;
-            this.tlpAlarm.ColumnCount = 1;
-            this.tlpAlarm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpAlarm.Controls.Add(this.tlpCount, 0, 0);
-            this.tlpAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpAlarm.ForeColor = System.Drawing.Color.White;
-            this.tlpAlarm.Location = new System.Drawing.Point(3, 3);
-            this.tlpAlarm.Name = "tlpAlarm";
-            this.tlpAlarm.RowCount = 1;
-            this.tlpAlarm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpAlarm.Size = new System.Drawing.Size(1176, 627);
-            this.tlpAlarm.TabIndex = 6;
-            // 
-            // tlpCount
-            // 
-            this.tlpCount.BackColor = System.Drawing.Color.White;
-            this.tlpCount.ColumnCount = 1;
-            this.tlpCount.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpCount.Controls.Add(this.tplTag, 0, 0);
-            this.tlpCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpCount.ForeColor = System.Drawing.Color.White;
-            this.tlpCount.Location = new System.Drawing.Point(3, 3);
-            this.tlpCount.Name = "tlpCount";
-            this.tlpCount.RowCount = 1;
-            this.tlpCount.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpCount.Size = new System.Drawing.Size(1170, 621);
-            this.tlpCount.TabIndex = 7;
-            // 
-            // tplTag
-            // 
-            this.tplTag.BackColor = System.Drawing.Color.White;
-            this.tplTag.ColumnCount = 1;
-            this.tplTag.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplTag.Controls.Add(this.tplPerson, 0, 0);
-            this.tplTag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tplTag.ForeColor = System.Drawing.Color.White;
-            this.tplTag.Location = new System.Drawing.Point(3, 3);
-            this.tplTag.Name = "tplTag";
-            this.tplTag.RowCount = 1;
-            this.tplTag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplTag.Size = new System.Drawing.Size(1164, 615);
-            this.tplTag.TabIndex = 8;
-            // 
-            // tplPerson
-            // 
-            this.tplPerson.BackColor = System.Drawing.Color.White;
-            this.tplPerson.ColumnCount = 1;
-            this.tplPerson.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplPerson.Controls.Add(this.tplCar, 0, 0);
-            this.tplPerson.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tplPerson.ForeColor = System.Drawing.Color.White;
-            this.tplPerson.Location = new System.Drawing.Point(3, 3);
-            this.tplPerson.Name = "tplPerson";
-            this.tplPerson.RowCount = 1;
-            this.tplPerson.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplPerson.Size = new System.Drawing.Size(1158, 609);
-            this.tplPerson.TabIndex = 9;
-            // 
-            // tplCar
-            // 
-            this.tplCar.BackColor = System.Drawing.Color.White;
-            this.tplCar.ColumnCount = 1;
-            this.tplCar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplCar.Controls.Add(this.tplDevice, 0, 0);
-            this.tplCar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tplCar.ForeColor = System.Drawing.Color.White;
-            this.tplCar.Location = new System.Drawing.Point(3, 3);
-            this.tplCar.Name = "tplCar";
-            this.tplCar.RowCount = 1;
-            this.tplCar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplCar.Size = new System.Drawing.Size(1152, 603);
-            this.tplCar.TabIndex = 10;
-            // 
-            // tplDevice
-            // 
-            this.tplDevice.BackColor = System.Drawing.Color.White;
-            this.tplDevice.ColumnCount = 1;
-            this.tplDevice.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplDevice.Controls.Add(this.tplSystem, 0, 0);
-            this.tplDevice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tplDevice.ForeColor = System.Drawing.Color.White;
-            this.tplDevice.Location = new System.Drawing.Point(3, 3);
-            this.tplDevice.Name = "tplDevice";
-            this.tplDevice.RowCount = 1;
-            this.tplDevice.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplDevice.Size = new System.Drawing.Size(1146, 597);
-            this.tplDevice.TabIndex = 11;
-            // 
-            // tplSystem
-            // 
-            this.tplSystem.BackColor = System.Drawing.Color.White;
-            this.tplSystem.ColumnCount = 1;
-            this.tplSystem.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplSystem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tplSystem.ForeColor = System.Drawing.Color.White;
-            this.tplSystem.Location = new System.Drawing.Point(3, 3);
-            this.tplSystem.Name = "tplSystem";
-            this.tplSystem.RowCount = 1;
-            this.tplSystem.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tplSystem.Size = new System.Drawing.Size(1140, 591);
-            this.tplSystem.TabIndex = 12;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 120);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1182, 633);
+            this.tableLayoutPanel2.TabIndex = 6;
             // 
             // MDIParent
             // 
@@ -581,7 +466,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1182, 753);
-            this.Controls.Add(this.tlpMonitor);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("SimSun", 9F);
             this.ForeColor = System.Drawing.Color.White;
@@ -593,6 +478,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "智慧小区人员车辆管控系统";
             this.TransparencyKey = System.Drawing.Color.White;
+            this.Load += new System.EventHandler(this.MDIParent_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
@@ -626,13 +512,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.tlpMonitor.ResumeLayout(false);
-            this.tlpAlarm.ResumeLayout(false);
-            this.tlpCount.ResumeLayout(false);
-            this.tplTag.ResumeLayout(false);
-            this.tplPerson.ResumeLayout(false);
-            this.tplCar.ResumeLayout(false);
-            this.tplDevice.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -641,7 +520,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labMonitor;
-        private System.Windows.Forms.TableLayoutPanel tlpMonitor;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel16;
@@ -672,13 +550,7 @@
         private System.Windows.Forms.Label labAlarm;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TableLayoutPanel tlpAlarm;
-        private System.Windows.Forms.TableLayoutPanel tlpCount;
-        private System.Windows.Forms.TableLayoutPanel tplTag;
-        private System.Windows.Forms.TableLayoutPanel tplPerson;
-        private System.Windows.Forms.TableLayoutPanel tplCar;
-        private System.Windows.Forms.TableLayoutPanel tplDevice;
-        private System.Windows.Forms.TableLayoutPanel tplSystem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }
 
