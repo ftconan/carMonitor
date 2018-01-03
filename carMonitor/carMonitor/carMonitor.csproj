@@ -119,6 +119,9 @@
     <EmbeddedResource Include="frmAlarm.resx">
       <DependentUpon>frmAlarm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCar.resx">
+      <DependentUpon>frmCar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCount.resx">
       <DependentUpon>frmCount.cs</DependentUpon>
     </EmbeddedResource>

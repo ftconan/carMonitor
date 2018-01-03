@@ -23,14 +23,14 @@ namespace carMonitor
 
         private void MDIParent_Load(object sender, EventArgs e)
         {
-            // 移除tableLayoutPanel中的winform
-            //tableLayoutPanel2.Controls.Clear();
-            //frmMonitor frm1 = new frmMonitor();   //创建一个子窗体
-            //frm1.MdiParent = this;                 //子窗体在父窗体中显现
-            //frm1.Dock = DockStyle.Fill;
-            //frm1.FormBorderStyle = FormBorderStyle.None;
-            //tableLayoutPanel2.Controls.Add(frm1);
-            //frm1.Show();                           //子窗体显现
+            // 移除tablelayoutpanel中的winform
+            tableLayoutPanel2.Controls.Clear();
+            frmMonitor frm1 = new frmMonitor();   //创建一个子窗体
+            frm1.MdiParent = this;                 //子窗体在父窗体中显现
+            frm1.Dock = DockStyle.Fill;
+            frm1.FormBorderStyle = FormBorderStyle.None;
+            tableLayoutPanel2.Controls.Add(frm1);
+            frm1.Show();                           //子窗体显现
         }
 
         // 实时监控
