@@ -28,7 +28,7 @@ namespace carMonitor
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string str = "Server=localhost;User ID=root;Password=root;Database=car";
+            string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str); //实例化链接
             con.Open();   //开启连接
             string strcmd = string.Format("select * from user where userName='{0}'", txtName.Text);
@@ -75,8 +75,7 @@ namespace carMonitor
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.ToString());
-
+                MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             finally
             {
