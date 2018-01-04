@@ -38,8 +38,7 @@ namespace carMonitor
                     MessageBox.Show("添加用户成功！", "添加成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                     // 调用getUser刷新
-                    frmSystem frm = new frmSystem();
-                    frm.getUser();
+                    ((frmSystem)this.Owner).getUser();
                 }
                 else
                 {

@@ -26,7 +26,8 @@ namespace carMonitor
         private void btnAdd_Click(object sender, EventArgs e)
         {
             frmAddUser frm = new frmAddUser();
-            frm.Show();
+            frm.Owner = this;
+            frm.ShowDialog();
         }
 
         // 删除用户
