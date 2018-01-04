@@ -39,9 +39,9 @@
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("SimSun", 12F);
-            this.btnLogin.Location = new System.Drawing.Point(450, 427);
+            this.btnLogin.Location = new System.Drawing.Point(450, 421);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(100, 32);
+            this.btnLogin.Size = new System.Drawing.Size(110, 46);
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -50,9 +50,9 @@
             // txtExit
             // 
             this.txtExit.Font = new System.Drawing.Font("SimSun", 12F);
-            this.txtExit.Location = new System.Drawing.Point(636, 427);
+            this.txtExit.Location = new System.Drawing.Point(636, 421);
             this.txtExit.Name = "txtExit";
-            this.txtExit.Size = new System.Drawing.Size(100, 32);
+            this.txtExit.Size = new System.Drawing.Size(106, 46);
             this.txtExit.TabIndex = 4;
             this.txtExit.Text = "退出";
             this.txtExit.UseVisualStyleBackColor = true;

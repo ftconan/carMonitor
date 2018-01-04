@@ -29,11 +29,11 @@ namespace carMonitor
             DataSet ds = new DataSet();
             ada.Fill(ds, "user");                                           //查询结果填充数据集
             DataTable dt = ds.Tables["user"];
-            dataGridView1.DataSource = dt;
-            dataGridView1.Columns[0].HeaderCell.Value = "序号";
-            dataGridView1.Columns[1].HeaderCell.Value = "用户名";
-            dataGridView1.Columns[2].HeaderCell.Value = "密码";
-            dataGridView1.Columns[3].HeaderCell.Value = "权限等级";
+            dgvMonitor.DataSource = dt;
+            dgvMonitor.Columns[0].HeaderCell.Value = "序号";
+            dgvMonitor.Columns[1].HeaderCell.Value = "用户名";
+            dgvMonitor.Columns[2].HeaderCell.Value = "密码";
+            dgvMonitor.Columns[3].HeaderCell.Value = "权限等级";
             con.Close();
         }
     }
