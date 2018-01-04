@@ -18,6 +18,9 @@ namespace carMonitor
             InitializeComponent();
         }
 
+        public string userName;
+        public string grade;
+
         private void txtExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -40,14 +43,17 @@ namespace carMonitor
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    string userName = dt.Rows[0]["userName"].ToString();
+                    userName = dt.Rows[0]["userName"].ToString();
                     string password = dt.Rows[0]["password"].ToString();
+                    grade = dt.Rows[0]["grade"].ToString();
                     if (txtName.Text.Equals(userName) && txtPassword.Text.Equals(password))
                     {
                         MessageBox.Show("欢迎进入!", "登录成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MDIParent mdi = new MDIParent();
-                        mdi.Show();
                         this.Hide();
+                        // 传递grade
+                        mdi.Owner = this;
+                        mdi.Show();
                     }
                     else if (!txtPassword.Text.Equals(password))
                     {

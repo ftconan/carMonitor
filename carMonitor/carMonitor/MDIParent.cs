@@ -20,7 +20,6 @@ namespace carMonitor
             //this.skinEngine1.SkinFile = path;
         }
 
-
         private void MDIParent_Load(object sender, EventArgs e)
         {
             // 移除tablelayoutpanel中的winform
@@ -31,6 +30,26 @@ namespace carMonitor
             frm1.FormBorderStyle = FormBorderStyle.None;
             tableLayoutPanel2.Controls.Add(frm1);
             frm1.Show();                           //子窗体显现
+
+            // 权限判断
+            string userName = ((frmLogin)this.Owner).userName;
+            string grade = ((frmLogin)this.Owner).grade;
+            //Console.WriteLine(((frmLogin)this.Owner).userName);
+            //Console.WriteLine(((frmLogin)this.Owner).grade);
+            // 普通用户没有管理功能
+            if (grade == "普通用户")
+            {
+                this.pictureBox4.Hide();
+                this.pictureBox5.Hide();
+                this.pictureBox6.Hide();
+                this.pictureBox7.Hide();
+                this.pictureBox8.Hide();
+                this.labTag.Hide();
+                this.labPerson.Hide();
+                this.labCar.Hide();
+                this.labDevice.Hide();
+                this.labSystem.Hide();
+            }
         }
 
         // 实时监控
