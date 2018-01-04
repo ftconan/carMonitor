@@ -21,6 +21,9 @@ namespace carMonitor
         private void frmSystem_Load(object sender, EventArgs e)
         {
             getUser();
+            // 添加皮肤
+            //string path = Environment.CurrentDirectory + "\\OneBlue.ssk";
+            //this.skinEngine1.SkinFile = path;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

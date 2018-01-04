@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvTag = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radioName = new System.Windows.Forms.RadioButton();
+            this.radioCar = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnSelect = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioCar = new System.Windows.Forms.RadioButton();
-            this.radioName = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTag)).BeginInit();
             this.panel1.SuspendLayout();
@@ -67,26 +67,27 @@
             // 
             // dgvTag
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTag.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.dgvTag.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTag.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTag.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTag.Location = new System.Drawing.Point(3, 61);
             this.dgvTag.Name = "dgvTag";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("SimSun", 12F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTag.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            this.dgvTag.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTag.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dgvTag.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTag.RowTemplate.Height = 27;
             this.dgvTag.Size = new System.Drawing.Size(1156, 462);
             this.dgvTag.TabIndex = 1;
@@ -105,6 +106,32 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1156, 52);
             this.panel1.TabIndex = 3;
+            // 
+            // radioName
+            // 
+            this.radioName.AutoSize = true;
+            this.radioName.Font = new System.Drawing.Font("SimSun", 12F);
+            this.radioName.ForeColor = System.Drawing.Color.Black;
+            this.radioName.Location = new System.Drawing.Point(115, 16);
+            this.radioName.Name = "radioName";
+            this.radioName.Size = new System.Drawing.Size(110, 24);
+            this.radioName.TabIndex = 12;
+            this.radioName.Text = "人员姓名";
+            this.radioName.UseVisualStyleBackColor = true;
+            // 
+            // radioCar
+            // 
+            this.radioCar.AutoSize = true;
+            this.radioCar.Checked = true;
+            this.radioCar.Font = new System.Drawing.Font("SimSun", 12F);
+            this.radioCar.ForeColor = System.Drawing.Color.Black;
+            this.radioCar.Location = new System.Drawing.Point(19, 16);
+            this.radioCar.Name = "radioCar";
+            this.radioCar.Size = new System.Drawing.Size(90, 24);
+            this.radioCar.TabIndex = 11;
+            this.radioCar.TabStop = true;
+            this.radioCar.Text = "车牌号";
+            this.radioCar.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -164,31 +191,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(148, 25);
             this.textBox1.TabIndex = 5;
-            // 
-            // radioCar
-            // 
-            this.radioCar.AutoSize = true;
-            this.radioCar.Checked = true;
-            this.radioCar.Font = new System.Drawing.Font("SimSun", 12F);
-            this.radioCar.ForeColor = System.Drawing.Color.Black;
-            this.radioCar.Location = new System.Drawing.Point(19, 16);
-            this.radioCar.Name = "radioCar";
-            this.radioCar.Size = new System.Drawing.Size(90, 24);
-            this.radioCar.TabIndex = 11;
-            this.radioCar.Text = "车牌号";
-            this.radioCar.UseVisualStyleBackColor = true;
-            // 
-            // radioName
-            // 
-            this.radioName.AutoSize = true;
-            this.radioName.Font = new System.Drawing.Font("SimSun", 12F);
-            this.radioName.ForeColor = System.Drawing.Color.Black;
-            this.radioName.Location = new System.Drawing.Point(115, 16);
-            this.radioName.Name = "radioName";
-            this.radioName.Size = new System.Drawing.Size(110, 24);
-            this.radioName.TabIndex = 12;
-            this.radioName.Text = "人员姓名";
-            this.radioName.UseVisualStyleBackColor = true;
             // 
             // frmCount
             // 

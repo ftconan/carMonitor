@@ -33,6 +33,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBindTag = new System.Windows.Forms.Button();
+            this.btnUnbindTag = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,8 +43,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvTag = new System.Windows.Forms.DataGridView();
-            this.btnUnbindTag = new System.Windows.Forms.Button();
-            this.btnBindTag = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTag)).BeginInit();
@@ -82,6 +82,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1156, 52);
             this.panel1.TabIndex = 0;
+            // 
+            // btnBindTag
+            // 
+            this.btnBindTag.Font = new System.Drawing.Font("SimSun", 12F);
+            this.btnBindTag.ForeColor = System.Drawing.Color.Black;
+            this.btnBindTag.Location = new System.Drawing.Point(240, 11);
+            this.btnBindTag.Name = "btnBindTag";
+            this.btnBindTag.Size = new System.Drawing.Size(113, 36);
+            this.btnBindTag.TabIndex = 8;
+            this.btnBindTag.Text = "绑定标签";
+            this.btnBindTag.UseVisualStyleBackColor = true;
+            // 
+            // btnUnbindTag
+            // 
+            this.btnUnbindTag.Font = new System.Drawing.Font("SimSun", 12F);
+            this.btnUnbindTag.ForeColor = System.Drawing.Color.Black;
+            this.btnUnbindTag.Location = new System.Drawing.Point(370, 11);
+            this.btnUnbindTag.Name = "btnUnbindTag";
+            this.btnUnbindTag.Size = new System.Drawing.Size(113, 36);
+            this.btnUnbindTag.TabIndex = 7;
+            this.btnUnbindTag.Text = "解绑标签";
+            this.btnUnbindTag.UseVisualStyleBackColor = true;
             // 
             // btnSelect
             // 
@@ -158,6 +180,7 @@
             // 
             // dgvTag
             // 
+            this.dgvTag.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -181,28 +204,6 @@
             this.dgvTag.RowTemplate.Height = 27;
             this.dgvTag.Size = new System.Drawing.Size(1156, 462);
             this.dgvTag.TabIndex = 1;
-            // 
-            // btnUnbindTag
-            // 
-            this.btnUnbindTag.Font = new System.Drawing.Font("SimSun", 12F);
-            this.btnUnbindTag.ForeColor = System.Drawing.Color.Black;
-            this.btnUnbindTag.Location = new System.Drawing.Point(370, 11);
-            this.btnUnbindTag.Name = "btnUnbindTag";
-            this.btnUnbindTag.Size = new System.Drawing.Size(113, 36);
-            this.btnUnbindTag.TabIndex = 7;
-            this.btnUnbindTag.Text = "解绑标签";
-            this.btnUnbindTag.UseVisualStyleBackColor = true;
-            // 
-            // btnBindTag
-            // 
-            this.btnBindTag.Font = new System.Drawing.Font("SimSun", 12F);
-            this.btnBindTag.ForeColor = System.Drawing.Color.Black;
-            this.btnBindTag.Location = new System.Drawing.Point(240, 11);
-            this.btnBindTag.Name = "btnBindTag";
-            this.btnBindTag.Size = new System.Drawing.Size(113, 36);
-            this.btnBindTag.TabIndex = 8;
-            this.btnBindTag.Text = "绑定标签";
-            this.btnBindTag.UseVisualStyleBackColor = true;
             // 
             // frmPerson
             // 
