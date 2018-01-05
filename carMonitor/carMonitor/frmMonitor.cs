@@ -20,21 +20,34 @@ namespace carMonitor
 
         private void frmMonitor_Load(object sender, EventArgs e)
         {
+            getHistory();
+        }
+
+        // 获取历史信息
+        public void getHistory()
+        {
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
             con.Open();                                                     //开启连接
-            string strcmd = "select * from user";
+            string strcmd = "select * from history";
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
             MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            ada.Fill(ds, "user");                                           //查询结果填充数据集
-            DataTable dt = ds.Tables["user"];
+            ada.Fill(ds, "history");                                           //查询结果填充数据集
+            DataTable dt = ds.Tables["history"];
             dgvMonitor.DataSource = dt;
             dgvMonitor.Columns[0].HeaderCell.Value = "序号";
-            dgvMonitor.Columns[1].HeaderCell.Value = "用户名";
-            dgvMonitor.Columns[2].HeaderCell.Value = "密码";
-            dgvMonitor.Columns[3].HeaderCell.Value = "权限等级";
+            dgvMonitor.Columns[1].HeaderCell.Value = "人员标签号";
+            dgvMonitor.Columns[2].HeaderCell.Value = "姓名";
+            dgvMonitor.Columns[3].HeaderCell.Value = "车辆标签号";
+            dgvMonitor.Columns[4].HeaderCell.Value = "车牌号";
+            dgvMonitor.Columns[5].HeaderCell.Value = "创建时间";
             con.Close();
+        }
+
+        private void btnMonitor_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

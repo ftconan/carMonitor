@@ -31,8 +31,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvTag = new System.Windows.Forms.DataGridView();
+            this.dgvCar = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBindTag = new System.Windows.Forms.Button();
             this.btnUnbindTag = new System.Windows.Forms.Button();
@@ -44,7 +45,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCar)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.dgvTag, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dgvCar, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -67,9 +68,10 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1162, 585);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // dgvTag
+            // dgvCar
             // 
-            this.dgvTag.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCar.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -77,22 +79,30 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTag.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTag.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvTag.Location = new System.Drawing.Point(3, 61);
-            this.dgvTag.Name = "dgvTag";
+            this.dgvCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvCar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTag.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCar.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCar.Location = new System.Drawing.Point(3, 61);
+            this.dgvCar.Name = "dgvCar";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 9F);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.dgvTag.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvTag.RowTemplate.Height = 27;
-            this.dgvTag.Size = new System.Drawing.Size(1156, 462);
-            this.dgvTag.TabIndex = 1;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCar.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dgvCar.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvCar.RowTemplate.Height = 27;
+            this.dgvCar.Size = new System.Drawing.Size(1156, 462);
+            this.dgvCar.TabIndex = 1;
             // 
             // panel1
             // 
@@ -115,7 +125,7 @@
             // 
             this.btnBindTag.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnBindTag.ForeColor = System.Drawing.Color.Black;
-            this.btnBindTag.Location = new System.Drawing.Point(261, 7);
+            this.btnBindTag.Location = new System.Drawing.Point(261, 8);
             this.btnBindTag.Name = "btnBindTag";
             this.btnBindTag.Size = new System.Drawing.Size(113, 36);
             this.btnBindTag.TabIndex = 8;
@@ -126,7 +136,7 @@
             // 
             this.btnUnbindTag.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnUnbindTag.ForeColor = System.Drawing.Color.Black;
-            this.btnUnbindTag.Location = new System.Drawing.Point(411, 7);
+            this.btnUnbindTag.Location = new System.Drawing.Point(411, 8);
             this.btnUnbindTag.Name = "btnUnbindTag";
             this.btnUnbindTag.Size = new System.Drawing.Size(113, 36);
             this.btnUnbindTag.TabIndex = 7;
@@ -137,7 +147,7 @@
             // 
             this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnSelect.ForeColor = System.Drawing.Color.Black;
-            this.btnSelect.Location = new System.Drawing.Point(1059, 7);
+            this.btnSelect.Location = new System.Drawing.Point(1059, 8);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(88, 36);
             this.btnSelect.TabIndex = 6;
@@ -146,7 +156,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(912, 11);
+            this.textBox1.Location = new System.Drawing.Point(912, 12);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(125, 25);
             this.textBox1.TabIndex = 5;
@@ -156,7 +166,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("SimSun", 12F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(837, 15);
+            this.label1.Location = new System.Drawing.Point(837, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 20);
             this.label1.TabIndex = 4;
@@ -166,7 +176,7 @@
             // 
             this.btnOutput.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnOutput.ForeColor = System.Drawing.Color.Black;
-            this.btnOutput.Location = new System.Drawing.Point(686, 7);
+            this.btnOutput.Location = new System.Drawing.Point(686, 8);
             this.btnOutput.Name = "btnOutput";
             this.btnOutput.Size = new System.Drawing.Size(123, 36);
             this.btnOutput.TabIndex = 3;
@@ -177,7 +187,7 @@
             // 
             this.btnImport.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnImport.ForeColor = System.Drawing.Color.Black;
-            this.btnImport.Location = new System.Drawing.Point(549, 7);
+            this.btnImport.Location = new System.Drawing.Point(549, 8);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(113, 36);
             this.btnImport.TabIndex = 2;
@@ -188,7 +198,7 @@
             // 
             this.btnDelete.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(143, 7);
+            this.btnDelete.Location = new System.Drawing.Point(126, 8);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(88, 36);
             this.btnDelete.TabIndex = 1;
@@ -199,7 +209,7 @@
             // 
             this.btnAdd.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(22, 7);
+            this.btnAdd.Location = new System.Drawing.Point(9, 8);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 36);
             this.btnAdd.TabIndex = 0;
@@ -214,8 +224,9 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmCar";
             this.Text = "frmCar";
+            this.Load += new System.EventHandler(this.frmCar_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -225,7 +236,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView dgvTag;
+        private System.Windows.Forms.DataGridView dgvCar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnBindTag;
         private System.Windows.Forms.Button btnUnbindTag;
