@@ -18,6 +18,8 @@ namespace carMonitor
             // 添加皮肤
             //string path = Environment.CurrentDirectory + "\\OneBlue.ssk";
             //this.skinEngine1.SkinFile = path;
+            //skinEngine1.DisableTag = 9999;
+            //skinEngine1.SkinAllForm = true;
         }
 
         private void MDIParent_Load(object sender, EventArgs e)

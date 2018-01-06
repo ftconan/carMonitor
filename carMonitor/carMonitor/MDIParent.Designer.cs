@@ -127,6 +127,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1182, 120);
             this.tableLayoutPanel1.TabIndex = 4;
+            this.tableLayoutPanel1.Tag = "9999";
             // 
             // panel16
             // 
@@ -459,6 +460,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1182, 633);
             this.tableLayoutPanel2.TabIndex = 6;
+            this.tableLayoutPanel2.Tag = "9999";
             // 
             // MDIParent
             // 
@@ -476,6 +478,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "MDIParent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "";
             this.Text = "智慧小区人员车辆管控系统";
             this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.MDIParent_Load);
