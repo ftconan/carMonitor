@@ -44,5 +44,61 @@ namespace carMonitor
             dgvAlarm.Columns[5].HeaderCell.Value = "创建时间";
             con.Close();
         }
+
+        // 查询
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+            MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+            con.Open();                                                     //开启连接
+            string carTag = this.txtCardNum.Text;
+            string startTime = this.dateTimePicker1.Text;
+            string endTime = this.dateTimePicker2.Text;
+            string strcmd;
+            // 如果carTag为空，查询所有
+            if (String.IsNullOrEmpty(carTag))
+            {
+                strcmd = "select * from alarm";
+            }
+            else
+            {
+                strcmd = String.Format("select * from alarm where carTag like '%{0}%' and createTime between '{1}' and '{2}'", carTag, startTime, endTime);
+            }
+            MySqlCommand cmd = new MySqlCommand(strcmd, con);
+            MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
+            try
+            {
+                DataSet ds = new DataSet();
+                ada.Fill(ds, "alarm");                                           //查询结果填充数据集
+                DataTable dt = ds.Tables["alarm"];
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    dgvAlarm.DataSource = dt;
+                    dgvAlarm.Columns[0].HeaderCell.Value = "序号";
+                    dgvAlarm.Columns[1].HeaderCell.Value = "车辆标签号";
+                    dgvAlarm.Columns[2].HeaderCell.Value = "车牌号";
+                    dgvAlarm.Columns[3].HeaderCell.Value = "报警类型";
+                    dgvAlarm.Columns[4].HeaderCell.Value = "报警内容";
+                    dgvAlarm.Columns[5].HeaderCell.Value = "创建时间";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+        }
+
+        private void btnProtect_Click(object sender, EventArgs e)
+        {
+            frmProtect frm = new frmProtect();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
     }
 }

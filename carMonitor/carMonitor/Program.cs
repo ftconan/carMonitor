@@ -16,7 +16,7 @@ namespace carMonitor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmPerson());
+            Application.Run(new frmLogin());
         }
     }
 }

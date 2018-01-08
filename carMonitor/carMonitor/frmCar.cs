@@ -40,8 +40,9 @@ namespace carMonitor
             dgvCar.Columns[1].HeaderCell.Value = "车辆标签号";
             dgvCar.Columns[2].HeaderCell.Value = "车辆名称";
             dgvCar.Columns[3].HeaderCell.Value = "车牌号";
-            dgvCar.Columns[4].HeaderCell.Value = "人员标签号";
-            dgvCar.Columns[5].HeaderCell.Value = "创建时间";
+            dgvCar.Columns[4].HeaderCell.Value = "人员姓名";
+            dgvCar.Columns[5].HeaderCell.Value = "人员标签号";
+            dgvCar.Columns[6].HeaderCell.Value = "创建时间";
             con.Close();
         }
     }

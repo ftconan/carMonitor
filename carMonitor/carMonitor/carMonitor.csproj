@@ -136,6 +136,12 @@
     <Compile Include="frmPerson.Designer.cs">
       <DependentUpon>frmPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProtect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProtect.Designer.cs">
+      <DependentUpon>frmProtect.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPerson.resx">
       <DependentUpon>frmPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProtect.resx">
+      <DependentUpon>frmProtect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSystem.resx">
       <DependentUpon>frmSystem.cs</DependentUpon>
