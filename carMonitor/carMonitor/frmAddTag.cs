@@ -11,38 +11,39 @@ using System.Windows.Forms;
 
 namespace carMonitor
 {
-    public partial class frmAddDevice : Form
+    public partial class frmAddTag : Form
     {
-        public frmAddDevice()
+        public frmAddTag()
         {
             InitializeComponent();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            string deviceName = this.txtDeviceName.Text;
-            string deviceId = this.txtDeviceId.Text;
-            DateTime dateTime = DateTime.Now;
+            string tagNum = this.txtNum.Text;
+            string tagType = this.cboTagType.SelectedItem.ToString();
+            string tagState = "未绑定";
+            DateTime createTime = DateTime.Now;
 
-            // 添加设备
+            // 添加标签
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
             con.Open();                                                     //开启连接
-            string strcmd = String.Format("insert into device (deviceName,deviceNum,createTime)" + "values('{0}','{1}','{2}')", deviceName, deviceId, dateTime);
+            string strcmd = String.Format("insert into tag (tagNum,tagType,tagState,createTime)" + "values('{0}','{1}','{2}','{3}')", tagNum, tagType, tagState, createTime);
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
             try
             {
                 int count = cmd.ExecuteNonQuery();
                 if (count > 0)
                 {
-                    MessageBox.Show("添加基站成功！", "添加成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("添加标签成功！", "添加成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                    // 调用getDevice刷新
-                    ((frmDevice)this.Owner).getDevice();
+                    // 调用getTag刷新
+                    ((frmTag)this.Owner).getTag();
                 }
                 else
                 {
-                    MessageBox.Show("添加基站失败！", "添加失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("添加标签失败！", "添加失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
 
@@ -61,26 +62,6 @@ namespace carMonitor
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void txtDeviceName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDeviceId_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

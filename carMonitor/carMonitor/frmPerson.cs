@@ -25,6 +25,9 @@ namespace carMonitor
             getPerson();
         }
 
+        public string personName;
+        public string bindTag;
+
         // 获取人员信息
         public void getPerson()
         {
@@ -121,99 +124,183 @@ namespace carMonitor
                 else
                 {
                     // 添加人员
-                    //string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
-                    //MySqlConnection con = new MySqlConnection(str);                 //实例化链接
-                    //con.Open();                                                     //开启连接
-                    //string strcmd = "select * from [Sheet1$]";
-                    //MySqlCommand cmd = new MySqlCommand(strcmd, con);
-                    //MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
+                    string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+                    MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+                    con.Open();                                                     //开启连接
 
-                    ////// excel 数据填充到datagridview
-                    //DataSet ds = new DataSet();
-                    //ada.Fill(ds, "[Sheet1$]");                                           //查询结果填充数据集
-                    //DataTable dt = ds.Tables["[Sheet1$]"];
-                    //dgvPerson.DataSource = dt;
-
-                    Console.WriteLine(filePath);
+                    // 打开excel,将excel数据导入datatable
                     ExcelHelper excel_helper = new ExcelHelper(filePath);
                     DataTable dt = excel_helper.ExcelToDataTable("", true);
 
-                    List<string> tableList = GetColumnsByDataTable(dt);
-                    for (int i = 0; i < tableList.Count; i++)
+                    // dataTable导入mysql
+                    #region
+                    try
                     {
-                        foreach (DataRow item in dt.Rows)
+                        DataRow dr = null;
+                        for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            try
+                            dr = dt.Rows[i];
+                            string personName = dr["姓名"].ToString();
+                            string sex = dr["性别"].ToString();
+                            string phoneNum = dr["电话号码"].ToString();
+                            string tagId = dr["人员标签号"].ToString();
+                            DateTime createTime = DateTime.Now;
+
+                            // 人员姓名已添加，不再导入
+                            string strcmd = String.Format("select * from person where personName='{0}'", personName);
+                            MySqlCommand cmd = new MySqlCommand(strcmd, con);
+                            cmd.ExecuteNonQuery();
+                            MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
+                            DataSet ds = new DataSet();
+                            ada.Fill(ds);
+                            DataTable dt1 = ds.Tables[0];
+                            if (ds.Tables[0].Rows.Count <= 0)
                             {
-                                if (item[0].ToString() != "")
+                                // 如果标签号不为空，修改标签状态为已绑定
+                                if (!String.IsNullOrEmpty(tagId))
                                 {
-                                    if (i < tableList.Count - 1 & item[i + 1].ToString() != "")
-                                    {
-                                        Console.WriteLine(item[0].ToString() + "\t" + item[i + 1].ToString());
-                                    }
+                                    string strcmd2 = String.Format("update tag set tagState='已绑定' where tagNum='{0}'", tagId);
+                                    MySqlCommand cmd2 = new MySqlCommand(strcmd2, con);
+                                    cmd2.ExecuteNonQuery();
+
+                                    string sql = String.Format("insert into person (tagId,personName,sex,phoneNum,createTime)" + "values('{0}','{1}','{2}','{3}','{4}')", tagId, personName, sex, phoneNum, createTime);
+                                    MySqlCommand msd = new MySqlCommand(sql, con);
+                                    msd.ExecuteNonQuery();
+                                }
+                                else
+                                {
+                                    string sql = String.Format("insert into person (personName,sex,phoneNum,createTime)" + "values('{0}','{1}','{2}','{3}')",personName, sex, phoneNum, createTime);
+                                    MySqlCommand msd = new MySqlCommand(sql, con);
+                                    msd.ExecuteNonQuery();
                                 }
                             }
-                            catch (Exception ex)
-                            { }
                         }
-                        Console.WriteLine("");
+
+                        getPerson();
                     }
-                    dgvPerson.DataSource = dt;
-                  
-                    // dataTable导入mysql
-                    //#region
-                    //try
-                    //{
-                    //    if (dgvPerson.Rows.Count > 0)
-                    //    {
-                    //        DataRow dr = null;
-                    //        for (int i = 0; i < dt.Rows.Count; i++)
-                    //        {
-                    //            dr = dt.Rows[i];
-                    //            string tagId = dr["tagId"].ToString();
-                    //            string personName = dr["personName"].ToString();
-                    //            string sex = dr["sex"].ToString();
-                    //            string phoneNum = dr["phoneNum"].ToString();
-                    //            string createTime = dr["createTime"].ToString();
-                    //            string sql = String.Format("insert into user (userName,password,grade)" + "values('{0}','{1}','{2}','{3}','{4}','{5}')", tagId, personName, sex, phoneNum, createTime);
-                    //            MySqlCommand msd = new MySqlCommand(sql, con);
-                    //            msd.ExecuteNonQuery();
-                    //        }
-                    //    }
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //}
-                    //finally
-                    //{
-                    //    con.Close();
-                    //    con.Dispose();
-                    //}
-                    //#endregion
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    finally
+                    {
+                        con.Close();
+                        con.Dispose();
+                    }
+                    #endregion
                 }
             }
         }
 
-        /// <summary>  
-        /// 根据datatable获得列名  
-        /// </summary>  
-        /// <param name="dt">表对象</param>  
-        /// <returns>返回结果的数据列数组</returns>  
-        public static List<string> GetColumnsByDataTable(DataTable dt)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            List<string> strColumns = new List<string>();
+            frmAddPerson frm = new frmAddPerson();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
 
-            if (dt.Columns.Count > 0)
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+            MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+            con.Open();                                                     //开启连接
+            try
             {
-                int columnNum = 0;
-                columnNum = dt.Columns.Count; ;
-                for (int i = 0; i < dt.Columns.Count; i++)
+                // 如果用户被删除，把已经绑定的标签设成未绑定
+                bindTag = dgvPerson.SelectedRows[0].Cells[1].Value.ToString();
+                if (!String.IsNullOrEmpty(bindTag))
                 {
-                    strColumns.Add(dt.Columns[i].ColumnName);
+                    string strcmd2 = String.Format("update tag set tagState='未绑定' where tagNum='{0}'", bindTag);
+                    MySqlCommand cmd2 = new MySqlCommand(strcmd2, con);
+                    cmd2.ExecuteNonQuery();
+                }
+
+                int n = dgvPerson.SelectedRows.Count;//选中的行数
+                if (n > 0)
+                {
+                    for (int i = 0; i < n; i++)
+                    {
+                        string id = dgvPerson.SelectedRows[i].Cells[0].Value.ToString();
+                        string strcmd = String.Format("delete from person where id='{0}'", id);
+                        MySqlCommand cmd = new MySqlCommand(strcmd, con);
+                        cmd.ExecuteNonQuery();
+                    }
+                    getPerson();
+                    MessageBox.Show("删除人员成功！", "删除成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("请选中要删除的人员！", "删除失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            return strColumns;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+        }
+
+        private void btnBindTag_Click(object sender, EventArgs e)
+        {
+            int n = dgvPerson.SelectedRows.Count;//选中的行数
+            if (n > 0)
+            {
+                personName = dgvPerson.SelectedRows[0].Cells[2].Value.ToString();
+                bindTag = dgvPerson.SelectedRows[0].Cells[1].Value.ToString();
+                frmPersonTag frm = new frmPersonTag();
+                frm.Owner = this;
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("请选中要绑定标签的人员！", "绑定失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+            MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+            con.Open();                                                     //开启连接
+            string personName = this.txtPersonName.Text;
+            string strcmd;
+            // 如果personName为空，查询所有
+            if (String.IsNullOrEmpty(personName))
+            {
+                strcmd = "select * from person";
+            }
+            else
+            {
+                strcmd = String.Format("select * from person where personName like '%{0}%'", personName);
+            }
+            MySqlCommand cmd = new MySqlCommand(strcmd, con);
+            MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
+            try
+            {
+                DataSet ds = new DataSet();
+                ada.Fill(ds, "person");                                           //查询结果填充数据集
+                DataTable dt = ds.Tables["person"];
+                dgvPerson.DataSource = dt;
+                dgvPerson.Columns[0].HeaderCell.Value = "序号";
+                dgvPerson.Columns[1].HeaderCell.Value = "人员标签号";
+                dgvPerson.Columns[2].HeaderCell.Value = "姓名";
+                dgvPerson.Columns[3].HeaderCell.Value = "性别";
+                dgvPerson.Columns[4].HeaderCell.Value = "电话号码";
+                dgvPerson.Columns[5].HeaderCell.Value = "创建时间";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
         }
     }
 }

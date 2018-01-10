@@ -36,14 +36,13 @@
             this.dgvCar = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBindTag = new System.Windows.Forms.Button();
-            this.btnUnbindTag = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCarNum = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnOutput = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCar)).BeginInit();
             this.panel1.SuspendLayout();
@@ -107,13 +106,12 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnBindTag);
-            this.panel1.Controls.Add(this.btnUnbindTag);
+            this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnSelect);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtCarNum);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnOutput);
             this.panel1.Controls.Add(this.btnImport);
-            this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
@@ -125,23 +123,13 @@
             // 
             this.btnBindTag.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnBindTag.ForeColor = System.Drawing.Color.Black;
-            this.btnBindTag.Location = new System.Drawing.Point(261, 8);
+            this.btnBindTag.Location = new System.Drawing.Point(325, 8);
             this.btnBindTag.Name = "btnBindTag";
             this.btnBindTag.Size = new System.Drawing.Size(113, 36);
             this.btnBindTag.TabIndex = 8;
             this.btnBindTag.Text = "绑定标签";
             this.btnBindTag.UseVisualStyleBackColor = true;
-            // 
-            // btnUnbindTag
-            // 
-            this.btnUnbindTag.Font = new System.Drawing.Font("SimSun", 12F);
-            this.btnUnbindTag.ForeColor = System.Drawing.Color.Black;
-            this.btnUnbindTag.Location = new System.Drawing.Point(411, 8);
-            this.btnUnbindTag.Name = "btnUnbindTag";
-            this.btnUnbindTag.Size = new System.Drawing.Size(113, 36);
-            this.btnUnbindTag.TabIndex = 7;
-            this.btnUnbindTag.Text = "解绑标签";
-            this.btnUnbindTag.UseVisualStyleBackColor = true;
+            this.btnBindTag.Click += new System.EventHandler(this.btnBindTag_Click);
             // 
             // btnSelect
             // 
@@ -153,13 +141,15 @@
             this.btnSelect.TabIndex = 6;
             this.btnSelect.Text = "查询";
             this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
-            // textBox1
+            // txtCarNum
             // 
-            this.textBox1.Location = new System.Drawing.Point(912, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 25);
-            this.textBox1.TabIndex = 5;
+            this.txtCarNum.Font = new System.Drawing.Font("SimSun", 12F);
+            this.txtCarNum.Location = new System.Drawing.Point(912, 12);
+            this.txtCarNum.Name = "txtCarNum";
+            this.txtCarNum.Size = new System.Drawing.Size(125, 30);
+            this.txtCarNum.TabIndex = 5;
             // 
             // label1
             // 
@@ -176,34 +166,25 @@
             // 
             this.btnOutput.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnOutput.ForeColor = System.Drawing.Color.Black;
-            this.btnOutput.Location = new System.Drawing.Point(686, 8);
+            this.btnOutput.Location = new System.Drawing.Point(675, 8);
             this.btnOutput.Name = "btnOutput";
             this.btnOutput.Size = new System.Drawing.Size(123, 36);
             this.btnOutput.TabIndex = 3;
             this.btnOutput.Text = "批量导出";
             this.btnOutput.UseVisualStyleBackColor = true;
+            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
             // 
             // btnImport
             // 
             this.btnImport.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnImport.ForeColor = System.Drawing.Color.Black;
-            this.btnImport.Location = new System.Drawing.Point(549, 8);
+            this.btnImport.Location = new System.Drawing.Point(503, 8);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(113, 36);
             this.btnImport.TabIndex = 2;
             this.btnImport.Text = "批量导入";
             this.btnImport.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("SimSun", 12F);
-            this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(126, 8);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(88, 36);
-            this.btnDelete.TabIndex = 1;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnAdd
             // 
@@ -215,6 +196,19 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "添加";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("SimSun", 12F);
+            this.btnDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnDelete.Location = new System.Drawing.Point(152, 8);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(113, 36);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmCar
             // 
@@ -239,13 +233,12 @@
         private System.Windows.Forms.DataGridView dgvCar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnBindTag;
-        private System.Windows.Forms.Button btnUnbindTag;
         private System.Windows.Forms.Button btnSelect;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCarNum;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnOutput;
         private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

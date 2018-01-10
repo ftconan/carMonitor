@@ -82,11 +82,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelHelper.cs" />
+    <Compile Include="frmAddCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddCar.Designer.cs">
+      <DependentUpon>frmAddCar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddDevice.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAddDevice.Designer.cs">
       <DependentUpon>frmAddDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddPerson.Designer.cs">
+      <DependentUpon>frmAddPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddTag.Designer.cs">
+      <DependentUpon>frmAddTag.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAddUser.cs">
       <SubType>Form</SubType>
@@ -105,6 +123,12 @@
     </Compile>
     <Compile Include="frmCar.Designer.cs">
       <DependentUpon>frmCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCarTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCarTag.Designer.cs">
+      <DependentUpon>frmCarTag.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCount.cs">
       <SubType>Form</SubType>
@@ -136,6 +160,12 @@
     <Compile Include="frmPerson.Designer.cs">
       <DependentUpon>frmPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPersonTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonTag.Designer.cs">
+      <DependentUpon>frmPersonTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProtect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,8 +193,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Temp.cs" />
+    <EmbeddedResource Include="frmAddCar.resx">
+      <DependentUpon>frmAddCar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddDevice.resx">
       <DependentUpon>frmAddDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddPerson.resx">
+      <DependentUpon>frmAddPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddTag.resx">
+      <DependentUpon>frmAddTag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddUser.resx">
       <DependentUpon>frmAddUser.cs</DependentUpon>
@@ -174,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCar.resx">
       <DependentUpon>frmCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCarTag.resx">
+      <DependentUpon>frmCarTag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCount.resx">
       <DependentUpon>frmCount.cs</DependentUpon>
@@ -189,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPerson.resx">
       <DependentUpon>frmPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonTag.resx">
+      <DependentUpon>frmPersonTag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProtect.resx">
       <DependentUpon>frmProtect.cs</DependentUpon>

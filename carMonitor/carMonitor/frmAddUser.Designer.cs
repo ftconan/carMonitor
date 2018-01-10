@@ -45,6 +45,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(170, 30);
             this.txtPassword.TabIndex = 14;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtName
             // 
@@ -53,6 +54,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(170, 30);
             this.txtName.TabIndex = 13;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // btnConfirm
             // 
@@ -87,6 +89,7 @@
             this.label2.Size = new System.Drawing.Size(58, 24);
             this.label2.TabIndex = 11;
             this.label2.Text = "密码";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -99,6 +102,7 @@
             this.label1.Size = new System.Drawing.Size(82, 24);
             this.label1.TabIndex = 9;
             this.label1.Text = "用户名";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // cboGrade
             // 
@@ -111,6 +115,7 @@
             this.cboGrade.Name = "cboGrade";
             this.cboGrade.Size = new System.Drawing.Size(170, 28);
             this.cboGrade.TabIndex = 16;
+            this.cboGrade.SelectedIndexChanged += new System.EventHandler(this.cboGrade_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -123,6 +128,7 @@
             this.label3.Size = new System.Drawing.Size(106, 24);
             this.label3.TabIndex = 15;
             this.label3.Text = "权限等级";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // frmAddUser
             // 
