@@ -168,7 +168,7 @@ namespace carMonitor
                             {
                                 // 如果标签号不为空，修改标签状态为已绑定
                                 // 查询人员标签
-                                string strcmd1 = String.Format("select tagId from person where personName='{0}'", personName);
+                                string strcmd1 = String.Format("select * from person where personName='{0}'", personName);
                                 MySqlCommand cmd1 = new MySqlCommand(strcmd1, con);
                                 cmd1.ExecuteNonQuery();
                                 MySqlDataAdapter ada1 = new MySqlDataAdapter(cmd1);
