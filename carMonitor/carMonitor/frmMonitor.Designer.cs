@@ -29,18 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvMonitor = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnMonitor = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtRate = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnMonitor = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonitor)).BeginInit();
             this.panel1.SuspendLayout();
@@ -54,6 +52,7 @@
             this.tableLayoutPanel1.Controls.Add(this.dgvMonitor, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Font = new System.Drawing.Font("SimSun", 12F);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -64,38 +63,22 @@
             // 
             // dgvMonitor
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F);
-            this.dgvMonitor.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("SimSun", 12F);
+            this.dgvMonitor.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvMonitor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMonitor.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMonitor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMonitor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMonitor.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMonitor.Location = new System.Drawing.Point(3, 61);
             this.dgvMonitor.Name = "dgvMonitor";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMonitor.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvMonitor.RowHeadersWidth = 100;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("SimSun", 12F);
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            this.dgvMonitor.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMonitor.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvMonitor.RowHeadersWidth = 100;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            this.dgvMonitor.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvMonitor.RowTemplate.Height = 27;
             this.dgvMonitor.Size = new System.Drawing.Size(1156, 521);
             this.dgvMonitor.TabIndex = 1;
@@ -112,12 +95,30 @@
             this.panel1.Size = new System.Drawing.Size(1156, 52);
             this.panel1.TabIndex = 2;
             // 
+            // txtRate
+            // 
+            this.txtRate.Location = new System.Drawing.Point(182, 13);
+            this.txtRate.Name = "txtRate";
+            this.txtRate.Size = new System.Drawing.Size(148, 30);
+            this.txtRate.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("SimSun", 12F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(39, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "采集频率(s)";
+            // 
             // btnMonitor
             // 
             this.btnMonitor.BackColor = System.Drawing.Color.Transparent;
             this.btnMonitor.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnMonitor.ForeColor = System.Drawing.Color.Black;
-            this.btnMonitor.Location = new System.Drawing.Point(352, 3);
+            this.btnMonitor.Location = new System.Drawing.Point(355, 3);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(140, 46);
             this.btnMonitor.TabIndex = 0;
@@ -129,24 +130,6 @@
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // txtRate
-            // 
-            this.txtRate.Location = new System.Drawing.Point(158, 11);
-            this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(148, 25);
-            this.txtRate.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("SimSun", 12F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(39, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "采集频率";
             // 
             // frmMonitor
             // 
