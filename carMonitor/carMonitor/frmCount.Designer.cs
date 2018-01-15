@@ -85,6 +85,7 @@
             this.dgvCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCount.Location = new System.Drawing.Point(3, 61);
             this.dgvCount.Name = "dgvCount";
+            this.dgvCount.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 12F);

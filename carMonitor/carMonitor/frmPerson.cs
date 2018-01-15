@@ -47,6 +47,8 @@ namespace carMonitor
             dgvPerson.Columns[3].HeaderCell.Value = "性别";
             dgvPerson.Columns[4].HeaderCell.Value = "电话号码";
             dgvPerson.Columns[5].HeaderCell.Value = "创建时间";
+            // 显示年月日时分秒
+            dgvPerson.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             con.Close();
         }
 
@@ -206,20 +208,20 @@ namespace carMonitor
             con.Open();                                                     //开启连接
             try
             {
-                // 如果用户被删除，把已经绑定的标签设成未绑定
-                bindTag = dgvPerson.SelectedRows[0].Cells[1].Value.ToString();
-                if (!String.IsNullOrEmpty(bindTag))
-                {
-                    string strcmd2 = String.Format("update tag set tagState='未绑定' where tagNum='{0}'", bindTag);
-                    MySqlCommand cmd2 = new MySqlCommand(strcmd2, con);
-                    cmd2.ExecuteNonQuery();
-                }
-
                 int n = dgvPerson.SelectedRows.Count;//选中的行数
                 if (n > 0)
                 {
                     for (int i = 0; i < n; i++)
                     {
+                        // 如果用户被删除，把已经绑定的标签设成未绑定
+                        bindTag = dgvPerson.SelectedRows[i].Cells[1].Value.ToString();
+                        if (!String.IsNullOrEmpty(bindTag))
+                        {
+                            string strcmd2 = String.Format("update tag set tagState='未绑定' where tagNum='{0}'", bindTag);
+                            MySqlCommand cmd2 = new MySqlCommand(strcmd2, con);
+                            cmd2.ExecuteNonQuery();
+                        }
+
                         string id = dgvPerson.SelectedRows[i].Cells[0].Value.ToString();
                         string strcmd = String.Format("delete from person where id='{0}'", id);
                         MySqlCommand cmd = new MySqlCommand(strcmd, con);
@@ -291,6 +293,8 @@ namespace carMonitor
                 dgvPerson.Columns[3].HeaderCell.Value = "性别";
                 dgvPerson.Columns[4].HeaderCell.Value = "电话号码";
                 dgvPerson.Columns[5].HeaderCell.Value = "创建时间";
+                // 显示年月日时分秒
+                dgvPerson.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
             }
             catch (Exception ex)
             {

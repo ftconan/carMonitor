@@ -83,6 +83,7 @@
             this.dgvCar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCar.Location = new System.Drawing.Point(3, 61);
             this.dgvCar.Name = "dgvCar";
+            this.dgvCar.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 12F);
@@ -209,7 +210,7 @@
             this.ClientSize = new System.Drawing.Size(1162, 585);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmCar";
-            this.Text = "frmCar";
+            this.Text = "车辆管理";
             this.Load += new System.EventHandler(this.frmCar_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCar)).EndInit();

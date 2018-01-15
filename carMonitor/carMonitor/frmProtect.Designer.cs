@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnUnProtect = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -45,7 +46,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvProtect = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnUnProtect = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProtect)).BeginInit();
@@ -65,8 +65,21 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(763, 162);
+            this.panel1.Size = new System.Drawing.Size(932, 194);
             this.panel1.TabIndex = 2;
+            // 
+            // btnUnProtect
+            // 
+            this.btnUnProtect.BackColor = System.Drawing.Color.Transparent;
+            this.btnUnProtect.Font = new System.Drawing.Font("SimSun", 12F);
+            this.btnUnProtect.ForeColor = System.Drawing.Color.Black;
+            this.btnUnProtect.Location = new System.Drawing.Point(592, 54);
+            this.btnUnProtect.Name = "btnUnProtect";
+            this.btnUnProtect.Size = new System.Drawing.Size(94, 46);
+            this.btnUnProtect.TabIndex = 12;
+            this.btnUnProtect.Text = "撤防";
+            this.btnUnProtect.UseVisualStyleBackColor = false;
+            this.btnUnProtect.Click += new System.EventHandler(this.btnUnProtect_Click);
             // 
             // dateTimePicker2
             // 
@@ -157,7 +170,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(769, 420);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(938, 502);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // dgvProtect
@@ -184,8 +197,9 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvProtect.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProtect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProtect.Location = new System.Drawing.Point(3, 171);
+            this.dgvProtect.Location = new System.Drawing.Point(3, 203);
             this.dgvProtect.Name = "dgvProtect";
+            this.dgvProtect.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
@@ -195,31 +209,18 @@
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
             this.dgvProtect.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvProtect.RowTemplate.Height = 27;
-            this.dgvProtect.Size = new System.Drawing.Size(763, 246);
+            this.dgvProtect.Size = new System.Drawing.Size(932, 296);
             this.dgvProtect.TabIndex = 1;
             // 
             // timer1
             // 
             this.timer1.Interval = 1000;
             // 
-            // btnUnProtect
-            // 
-            this.btnUnProtect.BackColor = System.Drawing.Color.Transparent;
-            this.btnUnProtect.Font = new System.Drawing.Font("SimSun", 12F);
-            this.btnUnProtect.ForeColor = System.Drawing.Color.Black;
-            this.btnUnProtect.Location = new System.Drawing.Point(592, 54);
-            this.btnUnProtect.Name = "btnUnProtect";
-            this.btnUnProtect.Size = new System.Drawing.Size(94, 46);
-            this.btnUnProtect.TabIndex = 12;
-            this.btnUnProtect.Text = "撤防";
-            this.btnUnProtect.UseVisualStyleBackColor = false;
-            this.btnUnProtect.Click += new System.EventHandler(this.btnUnProtect_Click);
-            // 
             // frmProtect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 420);
+            this.ClientSize = new System.Drawing.Size(938, 502);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.Name = "frmProtect";

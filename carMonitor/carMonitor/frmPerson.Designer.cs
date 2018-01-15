@@ -192,6 +192,7 @@
             this.dgvPerson.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPerson.Location = new System.Drawing.Point(3, 61);
             this.dgvPerson.Name = "dgvPerson";
+            this.dgvPerson.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 12F);

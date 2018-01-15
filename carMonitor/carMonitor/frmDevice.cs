@@ -83,6 +83,8 @@ namespace carMonitor
             dgvDevice.Columns[1].HeaderCell.Value = "基站名称";
             dgvDevice.Columns[2].HeaderCell.Value = "设备编号";
             dgvDevice.Columns[3].HeaderCell.Value = "创建时间";
+            // 显示年月日时分秒
+            dgvDevice.Columns[3].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             con.Close();
         }
     }

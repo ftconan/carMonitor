@@ -41,6 +41,8 @@ namespace carMonitor
             dgvTag.Columns[2].HeaderCell.Value = "标签类型";
             dgvTag.Columns[3].HeaderCell.Value = "标签状态";
             dgvTag.Columns[4].HeaderCell.Value = "创建时间";
+            // 显示年月日时分秒
+            dgvTag.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             con.Close();
         }
 
@@ -80,7 +82,7 @@ namespace carMonitor
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("请删除已经绑定标签的人员或车辆!", "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             finally
             {
@@ -248,6 +250,8 @@ namespace carMonitor
                 dgvTag.Columns[2].HeaderCell.Value = "标签类型";
                 dgvTag.Columns[3].HeaderCell.Value = "标签状态";
                 dgvTag.Columns[4].HeaderCell.Value = "创建时间";
+                // 显示年月日时分秒
+                dgvTag.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
             }
             catch (Exception ex)
             {

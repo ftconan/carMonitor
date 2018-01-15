@@ -175,6 +175,7 @@
             this.dgvTag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTag.Location = new System.Drawing.Point(3, 61);
             this.dgvTag.Name = "dgvTag";
+            this.dgvTag.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 12F);

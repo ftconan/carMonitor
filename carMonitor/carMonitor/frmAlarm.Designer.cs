@@ -183,6 +183,7 @@
             this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAlarm.Location = new System.Drawing.Point(3, 61);
             this.dgvAlarm.Name = "dgvAlarm";
+            this.dgvAlarm.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 12F);

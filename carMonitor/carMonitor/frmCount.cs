@@ -42,6 +42,8 @@ namespace carMonitor
             dgvCount.Columns[3].HeaderCell.Value = "车辆标签号";
             dgvCount.Columns[4].HeaderCell.Value = "车牌号";
             dgvCount.Columns[5].HeaderCell.Value = "创建时间";
+            // 显示年月日时分秒
+            dgvCount.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             con.Close();
         }
 

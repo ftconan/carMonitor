@@ -119,6 +119,8 @@ namespace carMonitor
             dgvProtect.Columns[2].HeaderCell.Value = "开始时间";
             dgvProtect.Columns[3].HeaderCell.Value = "结束时间";
             dgvProtect.Columns[4].HeaderCell.Value = "创建时间";
+            // 显示年月日时分秒
+            dgvProtect.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             con.Close();
         }
     }

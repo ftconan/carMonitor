@@ -42,6 +42,8 @@ namespace carMonitor
             dgvAlarm.Columns[3].HeaderCell.Value = "报警类型";
             dgvAlarm.Columns[4].HeaderCell.Value = "报警内容";
             dgvAlarm.Columns[5].HeaderCell.Value = "创建时间";
+            // 显示年月日时分秒
+            dgvAlarm.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             con.Close();
         }
 

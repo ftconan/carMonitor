@@ -59,7 +59,16 @@ namespace carMonitor
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             string carNum = this.labelCardNum.Text;
-            string tagId = this.cboTag.SelectedItem.ToString();
+            string tagId;
+            // 判断cboTag是否为空
+            if (!String.IsNullOrEmpty(this.cboTag.Text))
+            {
+                tagId = this.cboTag.Text;
+            }
+            else
+            {
+                tagId = this.cboTag.SelectedItem.ToString();
+            }
 
             // 绑定标签
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";

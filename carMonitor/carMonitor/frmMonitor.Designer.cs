@@ -71,6 +71,7 @@
             this.dgvMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMonitor.Location = new System.Drawing.Point(3, 61);
             this.dgvMonitor.Name = "dgvMonitor";
+            this.dgvMonitor.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("SimSun", 12F);
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
@@ -128,7 +129,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 6000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMonitor

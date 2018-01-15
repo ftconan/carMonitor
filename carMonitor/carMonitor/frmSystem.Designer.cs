@@ -68,6 +68,7 @@
             this.dgvSystem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSystem.Location = new System.Drawing.Point(3, 61);
             this.dgvSystem.Name = "dgvSystem";
+            this.dgvSystem.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 12F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;

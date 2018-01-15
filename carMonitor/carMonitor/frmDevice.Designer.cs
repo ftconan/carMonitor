@@ -60,6 +60,7 @@
             this.dgvDevice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDevice.Location = new System.Drawing.Point(3, 61);
             this.dgvDevice.Name = "dgvDevice";
+            this.dgvDevice.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 12F);

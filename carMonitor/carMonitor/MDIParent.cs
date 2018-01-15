@@ -64,7 +64,6 @@ namespace carMonitor
             frm1.FormBorderStyle = FormBorderStyle.None;
             tableLayoutPanel2.Controls.Add(frm1);
             frm1.Show();                           //子窗体显现
-
         }
 
         // 报警管理
