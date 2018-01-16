@@ -63,6 +63,11 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.txtRate = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnMonitor = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -88,6 +93,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.panel17.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -125,7 +132,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1182, 120);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1182, 114);
             this.tableLayoutPanel1.TabIndex = 4;
             this.tableLayoutPanel1.Tag = "9999";
             // 
@@ -134,7 +141,7 @@
             this.panel16.Controls.Add(this.pictureBox8);
             this.panel16.Location = new System.Drawing.Point(1032, 3);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(141, 78);
+            this.panel16.Size = new System.Drawing.Size(141, 73);
             this.panel16.TabIndex = 16;
             // 
             // pictureBox8
@@ -152,7 +159,7 @@
             this.panel15.Controls.Add(this.pictureBox7);
             this.panel15.Location = new System.Drawing.Point(885, 3);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(141, 78);
+            this.panel15.Size = new System.Drawing.Size(141, 73);
             this.panel15.TabIndex = 15;
             // 
             // pictureBox7
@@ -170,7 +177,7 @@
             this.panel14.Controls.Add(this.pictureBox6);
             this.panel14.Location = new System.Drawing.Point(738, 3);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(141, 78);
+            this.panel14.Size = new System.Drawing.Size(141, 73);
             this.panel14.TabIndex = 14;
             // 
             // pictureBox6
@@ -188,7 +195,7 @@
             this.panel13.Controls.Add(this.pictureBox5);
             this.panel13.Location = new System.Drawing.Point(591, 3);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(141, 78);
+            this.panel13.Size = new System.Drawing.Size(141, 73);
             this.panel13.TabIndex = 13;
             // 
             // pictureBox5
@@ -206,7 +213,7 @@
             this.panel12.Controls.Add(this.pictureBox4);
             this.panel12.Location = new System.Drawing.Point(444, 3);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(141, 78);
+            this.panel12.Size = new System.Drawing.Size(141, 73);
             this.panel12.TabIndex = 12;
             // 
             // pictureBox4
@@ -224,7 +231,7 @@
             this.panel11.Controls.Add(this.pictureBox3);
             this.panel11.Location = new System.Drawing.Point(297, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(141, 78);
+            this.panel11.Size = new System.Drawing.Size(141, 73);
             this.panel11.TabIndex = 11;
             // 
             // pictureBox3
@@ -240,9 +247,9 @@
             // panel9
             // 
             this.panel9.Controls.Add(this.labTag);
-            this.panel9.Location = new System.Drawing.Point(444, 87);
+            this.panel9.Location = new System.Drawing.Point(444, 82);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(141, 30);
+            this.panel9.Size = new System.Drawing.Size(141, 29);
             this.panel9.TabIndex = 9;
             // 
             // labTag
@@ -262,9 +269,9 @@
             // panel8
             // 
             this.panel8.Controls.Add(this.labCount);
-            this.panel8.Location = new System.Drawing.Point(297, 87);
+            this.panel8.Location = new System.Drawing.Point(297, 82);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(141, 30);
+            this.panel8.Size = new System.Drawing.Size(141, 29);
             this.panel8.TabIndex = 8;
             // 
             // labCount
@@ -284,9 +291,9 @@
             // panel7
             // 
             this.panel7.Controls.Add(this.labCar);
-            this.panel7.Location = new System.Drawing.Point(738, 87);
+            this.panel7.Location = new System.Drawing.Point(738, 82);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(141, 30);
+            this.panel7.Size = new System.Drawing.Size(141, 29);
             this.panel7.TabIndex = 7;
             // 
             // labCar
@@ -306,9 +313,9 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.labPerson);
-            this.panel6.Location = new System.Drawing.Point(591, 87);
+            this.panel6.Location = new System.Drawing.Point(591, 82);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(141, 30);
+            this.panel6.Size = new System.Drawing.Size(141, 29);
             this.panel6.TabIndex = 6;
             // 
             // labPerson
@@ -328,9 +335,9 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.labSystem);
-            this.panel5.Location = new System.Drawing.Point(1032, 87);
+            this.panel5.Location = new System.Drawing.Point(1032, 82);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(141, 30);
+            this.panel5.Size = new System.Drawing.Size(141, 29);
             this.panel5.TabIndex = 5;
             // 
             // labSystem
@@ -350,9 +357,9 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.labDevice);
-            this.panel4.Location = new System.Drawing.Point(885, 87);
+            this.panel4.Location = new System.Drawing.Point(885, 82);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(141, 30);
+            this.panel4.Size = new System.Drawing.Size(141, 29);
             this.panel4.TabIndex = 4;
             // 
             // labDevice
@@ -372,9 +379,9 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.labAlarm);
-            this.panel3.Location = new System.Drawing.Point(150, 87);
+            this.panel3.Location = new System.Drawing.Point(150, 82);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(141, 30);
+            this.panel3.Size = new System.Drawing.Size(141, 29);
             this.panel3.TabIndex = 3;
             // 
             // labAlarm
@@ -394,9 +401,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.labMonitor);
-            this.panel1.Location = new System.Drawing.Point(3, 87);
+            this.panel1.Location = new System.Drawing.Point(3, 82);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(141, 30);
+            this.panel1.Size = new System.Drawing.Size(141, 29);
             this.panel1.TabIndex = 0;
             // 
             // labMonitor
@@ -418,7 +425,7 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(141, 78);
+            this.panel2.Size = new System.Drawing.Size(141, 73);
             this.panel2.TabIndex = 2;
             // 
             // pictureBox1
@@ -436,7 +443,7 @@
             this.panel10.Controls.Add(this.pictureBox2);
             this.panel10.Location = new System.Drawing.Point(150, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(141, 78);
+            this.panel10.Size = new System.Drawing.Size(141, 73);
             this.panel10.TabIndex = 10;
             // 
             // pictureBox2
@@ -453,14 +460,73 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 120);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 172);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1182, 633);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1182, 581);
             this.tableLayoutPanel2.TabIndex = 6;
             this.tableLayoutPanel2.Tag = "9999";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.panel17, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 114);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1182, 58);
+            this.tableLayoutPanel3.TabIndex = 8;
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.White;
+            this.panel17.Controls.Add(this.txtRate);
+            this.panel17.Controls.Add(this.label1);
+            this.panel17.Controls.Add(this.btnMonitor);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel17.Location = new System.Drawing.Point(3, 3);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(1176, 52);
+            this.panel17.TabIndex = 3;
+            // 
+            // txtRate
+            // 
+            this.txtRate.Font = new System.Drawing.Font("SimSun", 12F);
+            this.txtRate.Location = new System.Drawing.Point(182, 13);
+            this.txtRate.Name = "txtRate";
+            this.txtRate.Size = new System.Drawing.Size(148, 30);
+            this.txtRate.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("SimSun", 12F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(39, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "采集频率(s)";
+            // 
+            // btnMonitor
+            // 
+            this.btnMonitor.BackColor = System.Drawing.Color.Transparent;
+            this.btnMonitor.Font = new System.Drawing.Font("SimSun", 12F);
+            this.btnMonitor.ForeColor = System.Drawing.Color.Black;
+            this.btnMonitor.Location = new System.Drawing.Point(357, 9);
+            this.btnMonitor.Name = "btnMonitor";
+            this.btnMonitor.Size = new System.Drawing.Size(114, 35);
+            this.btnMonitor.TabIndex = 0;
+            this.btnMonitor.Text = "开启监控";
+            this.btnMonitor.UseVisualStyleBackColor = false;
+            this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
             // 
             // MDIParent
             // 
@@ -468,6 +534,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1182, 753);
+            this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("SimSun", 9F);
@@ -515,6 +582,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -554,6 +624,11 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.TextBox txtRate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnMonitor;
     }
 }
 

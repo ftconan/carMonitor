@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RfidNet;
 
 namespace carMonitor
 {
@@ -21,6 +23,13 @@ namespace carMonitor
             //skinEngine1.DisableTag = 9999;
             //skinEngine1.SkinAllForm = true;
         }
+
+        public static int rate = 0;
+        public static string btnMonitorText;
+        public static RfidServer server = new RfidServer();
+        // 字典：键为车辆标签，值为人员数组
+        public static Dictionary<string, List<string>> carPerson = new Dictionary<string, List<string>>();
+        public static List<string> timeList = new List<string>();
 
         private void MDIParent_Load(object sender, EventArgs e)
         {
@@ -57,6 +66,13 @@ namespace carMonitor
         // 实时监控
         private void labMonitor_Click(object sender, EventArgs e)
         {
+            // 检查server是否关闭
+            if (server.GetState())
+            {
+                server.StopServer();
+            }
+            server.StartServer(32500, 1000);
+
             tableLayoutPanel2.Controls.Clear();
             frmMonitor frm1 = new frmMonitor();   //创建一个子窗体
             frm1.MdiParent = this;                 //子窗体在父窗体中显现
@@ -148,6 +164,107 @@ namespace carMonitor
             frm8.FormBorderStyle = FormBorderStyle.None;
             tableLayoutPanel2.Controls.Add(frm8);
             frm8.Show();                           //子窗体显现
+        }
+
+        private void btnMonitor_Click(object sender, EventArgs e)
+        {
+            if (this.btnMonitor.Text == "开启监控")
+            {
+                startMonitor();
+                btnMonitorText = "关闭监控";
+
+                tableLayoutPanel2.Controls.Clear();
+                frmMonitor frm1 = new frmMonitor();   //创建一个子窗体
+                frm1.MdiParent = this;                 //子窗体在父窗体中显现
+                frm1.Dock = DockStyle.Fill;
+                frm1.FormBorderStyle = FormBorderStyle.None;
+                tableLayoutPanel2.Controls.Add(frm1);
+                frm1.Show();                           //子窗体显现
+
+                //SpeechSynthesizer synth = new SpeechSynthesizer();
+                //synth.Speak("Hello, 伍哥! 欢迎 www.vkesoft.com！");
+            }
+            else
+            {
+                //rate = 0;
+                btnMonitorText = "开启监控";
+                server.StopServer();
+                this.btnMonitor.Text = "开启监控";
+
+                tableLayoutPanel2.Controls.Clear();
+                frmMonitor frm1 = new frmMonitor();   //创建一个子窗体
+                frm1.MdiParent = this;                 //子窗体在父窗体中显现
+                frm1.Dock = DockStyle.Fill;
+                frm1.FormBorderStyle = FormBorderStyle.None;
+                tableLayoutPanel2.Controls.Add(frm1);
+                frm1.Show();                           //子窗体显现
+            }
+        }
+
+        // 开启数据采集服务器
+        public void startMonitor()
+        {
+            server.StartServer(32500, 1000);
+            if (server.GetState())
+            {
+                this.btnMonitor.Text = "关闭监控";
+                // 判断用户是否设置采集频率
+                if (!String.IsNullOrEmpty(txtRate.Text))
+                {
+                    rate = int.Parse(txtRate.Text) * 1000;
+                    MessageBox.Show("采集频率设置成功！", "设置成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    rate = 6000;
+                }
+                // electirccar 查出数据
+                string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+                MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+                con.Open();                                                     //开启连接
+                string strcmd = "select * from electriccar";
+                MySqlCommand cmd = new MySqlCommand(strcmd, con);
+                MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                ada.Fill(ds, "electriccar");                                           //查询结果填充数据集
+                DataTable dt = ds.Tables["electriccar"];
+
+                // 构建carPerson
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string carTag = dt.Rows[i]["tagId"].ToString();
+                    string personTag = dt.Rows[i]["personId"].ToString();
+
+                    // 车辆存在，追加personId
+                    if (carPerson.ContainsKey(carTag))
+                    {
+                        carPerson[carTag].Add(personTag);
+                    }
+                    else
+                    {
+                        List<string> personList = new List<string>();
+                        personList.Add(personTag);
+                        carPerson[carTag] = personList;
+                    }
+                }
+
+                // 查询布防时间
+                string strcmd1 = "select * from protection order by createTime desc limit 2";
+                MySqlCommand cmd1 = new MySqlCommand(strcmd1, con);
+                MySqlDataAdapter ada1 = new MySqlDataAdapter(cmd1);
+                DataSet ds1 = new DataSet();
+                ada1.Fill(ds1, "protection");                                           //查询结果填充数据集
+                DataTable dt1 = ds1.Tables["protection"];
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    string startTime = dt1.Rows[i]["startTime"].ToString();
+                    string endTime = dt1.Rows[i]["endTime"].ToString();
+
+                    timeList.Add(startTime);
+                    timeList.Add(endTime);
+                }
+                con.Close();
+            }
         }
     }
 }

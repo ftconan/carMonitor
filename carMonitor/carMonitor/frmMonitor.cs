@@ -10,19 +10,30 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RfidNet;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace carMonitor
 {
     public partial class frmMonitor : Form
     {
-        private RfidServer server = new RfidServer();
         private DataTable dt = new DataTable();
         private Dictionary<int, Temp> mDMsg = new Dictionary<int, Temp>();
-        // 字典：键为车辆标签，值为人员数组
-        private Dictionary<string, List<string>> carPerson = new Dictionary<string, List<string>>();
         private List<string> carTagList = new List<string>();
         private List<string> personTagList = new List<string>();
-        private List<string> timeList = new List<string>();
+
+        private int rate = MDIParent.rate;
+        private string btnMonitorText = MDIParent.btnMonitorText;
+        private RfidServer server = MDIParent.server;
+        // 字典：键为车辆标签，值为人员数组
+        private Dictionary<string, List<string>> carPerson = MDIParent.carPerson;
+        private List<string> timeList = MDIParent.timeList;
+
+        // 引入user32.dll
+        [DllImport("user32.dll", EntryPoint = "FindWindow", CharSet = CharSet.Auto)]
+        private extern static IntPtr FindWindow(string lpClassName, string lpWindowName);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int PostMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+        public const int WM_CLOSE = 0x10;
 
         public frmMonitor()
         {
@@ -32,20 +43,21 @@ namespace carMonitor
         private void frmMonitor_Load(object sender, EventArgs e)
         {
             getHistory();
-            startMonitor();
-        }
-
-        private void btnMonitor_Click(object sender, EventArgs e)
-        {
-            if (this.btnMonitor.Text == "开启监控")
+            // 判断rate是否为空，设置采集频率
+            if (btnMonitorText == "关闭监控" && rate != 0)
             {
-                startMonitor();
+                this.timer1.Interval = rate;
+                this.timer1.Enabled = true;
             }
             else
             {
                 this.timer1.Enabled = false;
+                this.timer1.Stop();
+                // 清空mDMsg
+                mDMsg.Clear();
+                carTagList.Clear();
+                personTagList.Clear();
                 server.StopServer();
-                this.btnMonitor.Text = "开启监控";
             }
         }
 
@@ -69,7 +81,6 @@ namespace carMonitor
                 nCount--;
             }
 
-            // 找到所有标签id
             foreach (var item in mDMsg)
             {
                 Temp temp = item.Value;
@@ -88,6 +99,36 @@ namespace carMonitor
                 }
             }
 
+            // 找到所有标签id
+            // 判断nCount是否为0
+            //if (nCount > 0)
+            //{
+            //    foreach (var item in mDMsg)
+            //    {
+            //        Temp temp = item.Value;
+            //        TagMsg msg = temp.Tagmsg;
+            //        string tagId = msg.TagId.ToString();
+            //        Console.WriteLine(tagId);
+
+            //        // 判断是否是车辆标签
+            //        if (carPerson.Keys.Contains(tagId))
+            //        {
+            //            carTagList.Add(tagId);
+            //        }
+            //        else
+            //        {
+            //            personTagList.Add(tagId);
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    // 清空车辆标签列表，人员标签列表
+            //    carTagList.Clear();
+            //    personTagList.Clear();
+            //}
+
+
             // 判断是否有车辆标签
             #region
             if (carTagList.Count > 0)
@@ -99,7 +140,6 @@ namespace carMonitor
                     // 遍历人员列表
                     for (int i = 0; i < personList.Count; i++)
                     {
-                        Console.Write(personList[i]);
                         // 判断personTagList是否存在
                         if (personTagList.Contains(personList[i]))
                         {
@@ -152,24 +192,26 @@ namespace carMonitor
                             // 判断是否在布防时间内
                             string strNow = DateTime.Now.ToString("T");
                             DateTime now = Convert.ToDateTime(strNow);
-                            if (timeList.Count == 2)
-                            {
-                                if(!(now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])))
-                                {
-                                    addAlarm(key);
-                                }
-                            }
-                            else if(timeList.Count == 4)
-                            {
-                                if (!(now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])) || (now >= Convert.ToDateTime(timeList[2]) && now <= Convert.ToDateTime(timeList[3])))
-                                {
-                                    addAlarm(key);
-                                }
-                            }
-                            else
-                            {
-                                addAlarm(key);
-                            }
+                            //if (timeList.Count == 2)
+                            //{
+                            //    if(!(now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])))
+                            //    {
+                            //        addAlarm(key);
+                            //    }
+                            //}
+                            //else if(timeList.Count == 4)
+                            //{
+                            //    if (!((now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])) || (now >= Convert.ToDateTime(timeList[2]) && now <= Convert.ToDateTime(timeList[3]))))
+                            //    {
+                            //        addAlarm(key);
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    addAlarm(key);
+                            //}
+
+                            addAlarm(key);
                         }
                     }
                 }
@@ -204,71 +246,6 @@ namespace carMonitor
             con.Close();
         }
 
-        // 开启数据采集服务器
-        public void startMonitor()
-        {
-            server.StartServer(32500, 1000);
-            if (server.GetState())
-            {
-                this.btnMonitor.Text = "关闭监控";
-                // 判断用户是否设置采集频率
-                if (!String.IsNullOrEmpty(txtRate.Text))
-                {
-                    this.timer1.Interval = int.Parse(txtRate.Text) * 1000;
-                    MessageBox.Show("采集频率设置成功！", "设置成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                // electirccar 查出数据
-                string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
-                MySqlConnection con = new MySqlConnection(str);                 //实例化链接
-                con.Open();                                                     //开启连接
-                string strcmd = "select * from electriccar";
-                MySqlCommand cmd = new MySqlCommand(strcmd, con);
-                MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                ada.Fill(ds, "electriccar");                                           //查询结果填充数据集
-                DataTable dt = ds.Tables["electriccar"];
-
-                // 构建carPerson
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    string carTag = dt.Rows[i]["tagId"].ToString();
-                    string personTag = dt.Rows[i]["personId"].ToString();
-
-                    // 车辆存在，追加personId
-                    if (carPerson.ContainsKey(carTag))
-                    {
-                        carPerson[carTag].Add(personTag);
-                    }
-                    else
-                    {
-                        List<string> personList = new List<string>();
-                        personList.Add(personTag);
-                        carPerson[carTag] = personList;
-                    }
-                }
-
-                // 查询布防时间
-                string strcmd1 = "select * from protection order by createTime desc limit 2";
-                MySqlCommand cmd1 = new MySqlCommand(strcmd1, con);
-                MySqlDataAdapter ada1 = new MySqlDataAdapter(cmd1);
-                DataSet ds1 = new DataSet();
-                ada1.Fill(ds1, "protection");                                           //查询结果填充数据集
-                DataTable dt1 = ds1.Tables["protection"];
-                for (int i = 0; i < dt1.Rows.Count; i++)
-                {
-                    string startTime = dt1.Rows[i]["startTime"].ToString();
-                    string endTime = dt1.Rows[i]["endTime"].ToString();
-
-                    timeList.Add(startTime);
-                    timeList.Add(endTime);
-                }
-
-                con.Close();
-                this.timer1.Enabled = true;
-            }
-        }
-
-        // 添加报警信息
         public void addAlarm(string tagId)
         {
             string alarmType = "警告";
@@ -296,6 +273,8 @@ namespace carMonitor
                     int count = cmd.ExecuteNonQuery();
                     if (count > 0)
                     {
+                        // 2秒自动关闭
+                        StartKiller();
                         MessageBox.Show(carNum+ "电瓶车可能被偷盗!", "报警提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -312,6 +291,30 @@ namespace carMonitor
             {
                 con.Close();
                 con.Dispose();
+            }
+        }
+
+        private void StartKiller()
+        {
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = 2000; //2秒启动 
+            timer.Tick += new EventHandler(Timer_Tick);
+            timer.Start();
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            KillMessageBox();
+            //停止Timer 
+            ((System.Windows.Forms.Timer)sender).Stop();
+        }
+        private void KillMessageBox()
+        {
+            //按照MessageBox的标题，找到MessageBox的窗口 
+            IntPtr ptr = FindWindow(null, "报警提示");
+            if (ptr != IntPtr.Zero)
+            {
+                //找到则关闭MessageBox窗口 
+                PostMessage(ptr, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
             }
         }
     }
