@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RfidNet;
+using System.Threading;
 
 namespace carMonitor
 {
@@ -25,11 +26,14 @@ namespace carMonitor
         }
 
         public static int rate = 0;
-        public static string btnMonitorText;
         public static RfidServer server = new RfidServer();
         // 字典：键为车辆标签，值为人员数组
         public static Dictionary<string, List<string>> carPerson = new Dictionary<string, List<string>>();
         public static List<string> timeList = new List<string>();
+        frmMonitor frm1;
+
+        // 新建监控数据线程
+        private Thread monitorThread;
 
         private void MDIParent_Load(object sender, EventArgs e)
         {
@@ -45,8 +49,7 @@ namespace carMonitor
             // 权限判断
             string userName = ((frmLogin)this.Owner).userName;
             string grade = ((frmLogin)this.Owner).grade;
-            //Console.WriteLine(((frmLogin)this.Owner).userName);
-            //Console.WriteLine(((frmLogin)this.Owner).grade);
+
             // 普通用户没有管理功能
             if (grade == "普通用户")
             {
@@ -74,7 +77,7 @@ namespace carMonitor
             server.StartServer(32500, 1000);
 
             tableLayoutPanel2.Controls.Clear();
-            frmMonitor frm1 = new frmMonitor();   //创建一个子窗体
+            frm1 = new frmMonitor();               //创建一个子窗体
             frm1.MdiParent = this;                 //子窗体在父窗体中显现
             frm1.Dock = DockStyle.Fill;
             frm1.FormBorderStyle = FormBorderStyle.None;
@@ -170,29 +173,42 @@ namespace carMonitor
         {
             if (this.btnMonitor.Text == "开启监控")
             {
-                startMonitor();
-                btnMonitorText = "关闭监控";
-
+                // 监控进程
+                monitorThread = new Thread(startMonitor);
+                monitorThread.Start();
+                this.btnMonitor.Text = "关闭监控";
+                // 判断用户是否设置采集频率
+                if (!String.IsNullOrEmpty(this.txtRate.Text))
+                {
+                    rate = int.Parse(this.txtRate.Text) * 1000;
+                    MessageBox.Show("采集频率设置成功！", "设置成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    rate = 6000;
+                }
                 tableLayoutPanel2.Controls.Clear();
-                frmMonitor frm1 = new frmMonitor();   //创建一个子窗体
+                frm1 = new frmMonitor();               //创建一个子窗体
                 frm1.MdiParent = this;                 //子窗体在父窗体中显现
                 frm1.Dock = DockStyle.Fill;
                 frm1.FormBorderStyle = FormBorderStyle.None;
                 tableLayoutPanel2.Controls.Add(frm1);
-                frm1.Show();                           //子窗体显现
-
-                //SpeechSynthesizer synth = new SpeechSynthesizer();
-                //synth.Speak("Hello, 伍哥! 欢迎 www.vkesoft.com！");
+                frm1.Show();                         //子窗体显现
             }
             else
             {
-                //rate = 0;
-                btnMonitorText = "开启监控";
-                server.StopServer();
+                rate = 0;
+                //server.StopServer();
+                monitorThread.Abort();
+                monitorThread.Join();
+                // 清空carPerson
+                carPerson.Clear();
+                timeList.Clear();
+
                 this.btnMonitor.Text = "开启监控";
 
                 tableLayoutPanel2.Controls.Clear();
-                frmMonitor frm1 = new frmMonitor();   //创建一个子窗体
+                frm1 = new frmMonitor();               //创建一个子窗体
                 frm1.MdiParent = this;                 //子窗体在父窗体中显现
                 frm1.Dock = DockStyle.Fill;
                 frm1.FormBorderStyle = FormBorderStyle.None;
@@ -202,22 +218,11 @@ namespace carMonitor
         }
 
         // 开启数据采集服务器
-        public void startMonitor()
+        public static void startMonitor()
         {
             server.StartServer(32500, 1000);
             if (server.GetState())
             {
-                this.btnMonitor.Text = "关闭监控";
-                // 判断用户是否设置采集频率
-                if (!String.IsNullOrEmpty(txtRate.Text))
-                {
-                    rate = int.Parse(txtRate.Text) * 1000;
-                    MessageBox.Show("采集频率设置成功！", "设置成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    rate = 6000;
-                }
                 // electirccar 查出数据
                 string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
                 MySqlConnection con = new MySqlConnection(str);                 //实例化链接

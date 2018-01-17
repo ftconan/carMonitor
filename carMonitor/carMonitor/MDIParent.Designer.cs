@@ -518,6 +518,7 @@
             // btnMonitor
             // 
             this.btnMonitor.BackColor = System.Drawing.Color.Transparent;
+            this.btnMonitor.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMonitor.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnMonitor.ForeColor = System.Drawing.Color.Black;
             this.btnMonitor.Location = new System.Drawing.Point(357, 9);

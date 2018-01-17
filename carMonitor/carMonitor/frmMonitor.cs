@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using RfidNet;
 using System.Threading;
 using System.Runtime.InteropServices;
+using System.Speech.Synthesis;
 
 namespace carMonitor
 {
@@ -20,13 +21,14 @@ namespace carMonitor
         private Dictionary<int, Temp> mDMsg = new Dictionary<int, Temp>();
         private List<string> carTagList = new List<string>();
         private List<string> personTagList = new List<string>();
+        private static System.Windows.Forms.Timer timerRate = new System.Windows.Forms.Timer();
 
         private int rate = MDIParent.rate;
-        private string btnMonitorText = MDIParent.btnMonitorText;
         private RfidServer server = MDIParent.server;
         // 字典：键为车辆标签，值为人员数组
         private Dictionary<string, List<string>> carPerson = MDIParent.carPerson;
         private List<string> timeList = MDIParent.timeList;
+        private bool alarmState;
 
         // 引入user32.dll
         [DllImport("user32.dll", EntryPoint = "FindWindow", CharSet = CharSet.Auto)]
@@ -43,16 +45,17 @@ namespace carMonitor
         private void frmMonitor_Load(object sender, EventArgs e)
         {
             getHistory();
-            // 判断rate是否为空，设置采集频率
-            if (btnMonitorText == "关闭监控" && rate != 0)
+            // 判断rate是否为0，设置采集频率
+            if (rate != 0)
             {
-                this.timer1.Interval = rate;
-                this.timer1.Enabled = true;
+                timerRate.Interval = rate;
+                timerRate.Tick += new EventHandler(timerRate_Tick);
+                timerRate.Enabled = true;
             }
             else
             {
-                this.timer1.Enabled = false;
-                this.timer1.Stop();
+                timerRate.Enabled = false;
+
                 // 清空mDMsg
                 mDMsg.Clear();
                 carTagList.Clear();
@@ -61,8 +64,14 @@ namespace carMonitor
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timerRate_Tick(object sender, EventArgs e)
         {
+            // 清空汽车、人员列表
+            mDMsg.Clear();
+            carTagList.Clear();
+            personTagList.Clear();
+
+            #region
             // 处理TagMsg
             int nCount = server.GetMsgCount();
             while (nCount > 0)
@@ -80,13 +89,14 @@ namespace carMonitor
                 }
                 nCount--;
             }
+            #endregion
 
+            //#region
             foreach (var item in mDMsg)
             {
                 Temp temp = item.Value;
                 TagMsg msg = temp.Tagmsg;
                 string tagId = msg.TagId.ToString();
-                Console.WriteLine(tagId);
 
                 // 判断是否是车辆标签
                 if (carPerson.Keys.Contains(tagId))
@@ -98,54 +108,32 @@ namespace carMonitor
                     personTagList.Add(tagId);
                 }
             }
-
-            // 找到所有标签id
-            // 判断nCount是否为0
-            //if (nCount > 0)
-            //{
-            //    foreach (var item in mDMsg)
-            //    {
-            //        Temp temp = item.Value;
-            //        TagMsg msg = temp.Tagmsg;
-            //        string tagId = msg.TagId.ToString();
-            //        Console.WriteLine(tagId);
-
-            //        // 判断是否是车辆标签
-            //        if (carPerson.Keys.Contains(tagId))
-            //        {
-            //            carTagList.Add(tagId);
-            //        }
-            //        else
-            //        {
-            //            personTagList.Add(tagId);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    // 清空车辆标签列表，人员标签列表
-            //    carTagList.Clear();
-            //    personTagList.Clear();
-            //}
+            //#endregion
 
 
             // 判断是否有车辆标签
             #region
             if (carTagList.Count > 0)
             {
-                foreach(string key in carPerson.Keys)
+                foreach (string key in carPerson.Keys)
                 {
                     List<string> personList = carPerson[key];
+                    alarmState = true;
 
                     // 遍历人员列表
+                    #region
                     for (int i = 0; i < personList.Count; i++)
                     {
                         // 判断personTagList是否存在
+                        #region
                         if (personTagList.Contains(personList[i]))
                         {
+                            // alarmState
+                            alarmState = false;
+
                             // 添加数据到历史记录
                             DateTime createTime = DateTime.Now;
-   
+
                             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
                             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
                             con.Open();                                                     //开启连接
@@ -187,30 +175,32 @@ namespace carMonitor
                                 con.Dispose();
                             }
                         }
+                        #endregion
+                    }
+                    #endregion
+
+                    // 报警判断，只要对应车辆有一个车主在，不报警
+                    if (alarmState)
+                    {
+                        // 判断是否在布防时间内
+                        string strNow = DateTime.Now.ToString("T");
+                        DateTime now = Convert.ToDateTime(strNow);
+                        if (timeList.Count == 2)
+                        {
+                            if (!(now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])))
+                            {
+                                addAlarm(key);
+                            }
+                        }
+                        else if (timeList.Count == 4)
+                        {
+                            if (!(((now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])) || (now >= Convert.ToDateTime(timeList[2]) && now <= Convert.ToDateTime(timeList[3])))))
+                            {
+                                addAlarm(key);
+                            }
+                        }
                         else
                         {
-                            // 判断是否在布防时间内
-                            string strNow = DateTime.Now.ToString("T");
-                            DateTime now = Convert.ToDateTime(strNow);
-                            //if (timeList.Count == 2)
-                            //{
-                            //    if(!(now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])))
-                            //    {
-                            //        addAlarm(key);
-                            //    }
-                            //}
-                            //else if(timeList.Count == 4)
-                            //{
-                            //    if (!((now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])) || (now >= Convert.ToDateTime(timeList[2]) && now <= Convert.ToDateTime(timeList[3]))))
-                            //    {
-                            //        addAlarm(key);
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    addAlarm(key);
-                            //}
-
                             addAlarm(key);
                         }
                     }
@@ -221,6 +211,7 @@ namespace carMonitor
             // 刷新列表
             getHistory();
         }
+
 
         // 获取最新的50条历史信息，即实时数据
         public void getHistory()
@@ -275,7 +266,9 @@ namespace carMonitor
                     {
                         // 2秒自动关闭
                         StartKiller();
-                        MessageBox.Show(carNum+ "电瓶车可能被偷盗!", "报警提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(carNum + "电瓶车可能被偷盗!", "报警提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SpeechSynthesizer synth = new SpeechSynthesizer();
+                        synth.Speak("请注意:" + carNum + "电瓶车可能被偷盗!");
                     }
                     else
                     {

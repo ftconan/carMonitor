@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvMonitor = new System.Windows.Forms.DataGridView();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonitor)).BeginInit();
             this.SuspendLayout();
@@ -78,11 +76,6 @@
             this.dgvMonitor.Size = new System.Drawing.Size(1156, 579);
             this.dgvMonitor.TabIndex = 1;
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 6000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // frmMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -104,7 +97,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dgvMonitor;
-        private System.Windows.Forms.Timer timer1;
     }
 }
 
