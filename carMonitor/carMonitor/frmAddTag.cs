@@ -21,15 +21,22 @@ namespace carMonitor
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             string tagNum = this.txtNum.Text;
-            string tagType = this.cboTagType.SelectedItem.ToString();
+            string tagType = this.cboTagType.Text;
             string tagState = "未绑定";
             DateTime createTime = DateTime.Now;
+
+            // 用户必填字段判断
+            if (String.IsNullOrEmpty(tagNum) || String.IsNullOrEmpty(tagType))
+            {
+                MessageBox.Show("请把所有字段填写完整！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             // 添加标签
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
             con.Open();                                                     //开启连接
-            string strcmd = String.Format("insert into tag (tagNum,tagType,tagState,createTime)" + "values('{0}','{1}','{2}','{3}')", tagNum, tagType, tagState, createTime);
+            string strcmd = String.Format("insert into tag (tagNum,tagType,createTime)" + "values('{0}','{1}','{2}')", tagNum, tagType,createTime);
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
             try
             {
@@ -62,6 +69,11 @@ namespace carMonitor
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmAddTag_Load(object sender, EventArgs e)
+        {
+            this.cboTagType.Text = "人员标签";
         }
     }
 }

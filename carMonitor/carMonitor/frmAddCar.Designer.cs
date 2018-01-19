@@ -70,6 +70,7 @@
             // 
             // btnConfirm
             // 
+            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirm.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnConfirm.Location = new System.Drawing.Point(98, 338);
             this.btnConfirm.Name = "btnConfirm";
@@ -81,6 +82,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnExit.Location = new System.Drawing.Point(285, 338);
             this.btnExit.Name = "btnExit";

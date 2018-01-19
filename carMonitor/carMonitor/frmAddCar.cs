@@ -58,8 +58,15 @@ namespace carMonitor
         {
             string carName = this.txtCarName.Text;
             string cardNum = this.txtCarNum.Text;
-            string personName = this.cboPersonName.SelectedItem.ToString();
+            string personName = this.cboPersonName.Text;
             DateTime createTime = DateTime.Now;
+
+            // 用户必填字段判断
+            if(String.IsNullOrEmpty(carName) || String.IsNullOrEmpty(cardNum) || String.IsNullOrEmpty(personName))
+            {
+                MessageBox.Show("请把所有字段填写完整！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             // 添加人员
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
@@ -90,7 +97,6 @@ namespace carMonitor
                     else
                     {
                         MessageBox.Show("添加车辆失败！", "添加失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     }
                 }
             }

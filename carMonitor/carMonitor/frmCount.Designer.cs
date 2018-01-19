@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCount = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,12 +44,12 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.labAllCount = new System.Windows.Forms.Label();
-            this.labPageSize = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.labPageSize = new System.Windows.Forms.Label();
+            this.labAllCount = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCount)).BeginInit();
             this.panel1.SuspendLayout();
@@ -78,31 +78,31 @@
             // 
             // dgvCount
             // 
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("SimSun", 12F);
-            this.dgvCount.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 12F);
+            this.dgvCount.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCount.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCount.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle42.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("SimSun", 12F);
-            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCount.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCount.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCount.Location = new System.Drawing.Point(3, 61);
             this.dgvCount.Name = "dgvCount";
             this.dgvCount.ReadOnly = true;
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle43.Font = new System.Drawing.Font("SimSun", 12F);
-            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCount.RowHeadersDefaultCellStyle = dataGridViewCellStyle43;
-            dataGridViewCellStyle44.ForeColor = System.Drawing.Color.Black;
-            this.dgvCount.RowsDefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCount.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dgvCount.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCount.RowTemplate.Height = 27;
             this.dgvCount.Size = new System.Drawing.Size(1156, 462);
             this.dgvCount.TabIndex = 1;
@@ -127,7 +127,7 @@
             this.radioName.AutoSize = true;
             this.radioName.Font = new System.Drawing.Font("SimSun", 12F);
             this.radioName.ForeColor = System.Drawing.Color.Black;
-            this.radioName.Location = new System.Drawing.Point(115, 11);
+            this.radioName.Location = new System.Drawing.Point(126, 6);
             this.radioName.Name = "radioName";
             this.radioName.Size = new System.Drawing.Size(110, 24);
             this.radioName.TabIndex = 12;
@@ -140,7 +140,7 @@
             this.radioCar.Checked = true;
             this.radioCar.Font = new System.Drawing.Font("SimSun", 12F);
             this.radioCar.ForeColor = System.Drawing.Color.Black;
-            this.radioCar.Location = new System.Drawing.Point(19, 12);
+            this.radioCar.Location = new System.Drawing.Point(30, 7);
             this.radioCar.Name = "radioCar";
             this.radioCar.Size = new System.Drawing.Size(90, 24);
             this.radioCar.TabIndex = 11;
@@ -153,7 +153,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("SimSun", 12F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(711, 15);
+            this.label3.Location = new System.Drawing.Point(722, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 20);
             this.label3.TabIndex = 10;
@@ -165,7 +165,7 @@
             this.dateTimePicker2.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePicker2.Font = new System.Drawing.Font("SimSun", 11F);
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(808, 11);
+            this.dateTimePicker2.Location = new System.Drawing.Point(819, 6);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(222, 28);
             this.dateTimePicker2.TabIndex = 9;
@@ -176,7 +176,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("SimSun", 12F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(385, 15);
+            this.label2.Location = new System.Drawing.Point(396, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 20);
             this.label2.TabIndex = 8;
@@ -188,16 +188,17 @@
             this.dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePicker1.Font = new System.Drawing.Font("SimSun", 11F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(488, 12);
+            this.dateTimePicker1.Location = new System.Drawing.Point(499, 7);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(217, 28);
             this.dateTimePicker1.TabIndex = 7;
             // 
             // btnSelect
             // 
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnSelect.ForeColor = System.Drawing.Color.Black;
-            this.btnSelect.Location = new System.Drawing.Point(1050, 9);
+            this.btnSelect.Location = new System.Drawing.Point(1061, 4);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(88, 36);
             this.btnSelect.TabIndex = 6;
@@ -208,7 +209,7 @@
             // txtCount
             // 
             this.txtCount.Font = new System.Drawing.Font("SimSun", 12F);
-            this.txtCount.Location = new System.Drawing.Point(234, 11);
+            this.txtCount.Location = new System.Drawing.Point(245, 6);
             this.txtCount.Name = "txtCount";
             this.txtCount.Size = new System.Drawing.Size(138, 30);
             this.txtCount.TabIndex = 5;
@@ -227,52 +228,21 @@
             this.panel2.Size = new System.Drawing.Size(1156, 53);
             this.panel2.TabIndex = 4;
             // 
-            // labAllCount
+            // linkLabel4
             // 
-            this.labAllCount.AutoSize = true;
-            this.labAllCount.ForeColor = System.Drawing.Color.Black;
-            this.labAllCount.Location = new System.Drawing.Point(15, 15);
-            this.labAllCount.Name = "labAllCount";
-            this.labAllCount.Size = new System.Drawing.Size(69, 20);
-            this.labAllCount.TabIndex = 0;
-            this.labAllCount.Text = "label1";
-            // 
-            // labPageSize
-            // 
-            this.labPageSize.AutoSize = true;
-            this.labPageSize.ForeColor = System.Drawing.Color.Black;
-            this.labPageSize.Location = new System.Drawing.Point(156, 15);
-            this.labPageSize.Name = "labPageSize";
-            this.labPageSize.Size = new System.Drawing.Size(69, 20);
-            this.labPageSize.TabIndex = 1;
-            this.labPageSize.Text = "label4";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(558, 16);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(69, 20);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "第一页";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(711, 16);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(89, 20);
-            this.linkLabel2.TabIndex = 3;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "最后一页";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(1052, 16);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(69, 20);
+            this.linkLabel4.TabIndex = 5;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "下一页";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(876, 15);
+            this.linkLabel3.Location = new System.Drawing.Point(911, 15);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(69, 20);
             this.linkLabel3.TabIndex = 4;
@@ -280,16 +250,47 @@
             this.linkLabel3.Text = "上一页";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
-            // linkLabel4
+            // linkLabel2
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(1017, 16);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(69, 20);
-            this.linkLabel4.TabIndex = 5;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "下一页";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(746, 16);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(89, 20);
+            this.linkLabel2.TabIndex = 3;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "最后一页";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(593, 16);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(69, 20);
+            this.linkLabel1.TabIndex = 2;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "第一页";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // labPageSize
+            // 
+            this.labPageSize.AutoSize = true;
+            this.labPageSize.ForeColor = System.Drawing.Color.Black;
+            this.labPageSize.Location = new System.Drawing.Point(191, 15);
+            this.labPageSize.Name = "labPageSize";
+            this.labPageSize.Size = new System.Drawing.Size(69, 20);
+            this.labPageSize.TabIndex = 1;
+            this.labPageSize.Text = "label4";
+            // 
+            // labAllCount
+            // 
+            this.labAllCount.AutoSize = true;
+            this.labAllCount.ForeColor = System.Drawing.Color.Black;
+            this.labAllCount.Location = new System.Drawing.Point(50, 15);
+            this.labAllCount.Name = "labAllCount";
+            this.labAllCount.Size = new System.Drawing.Size(69, 20);
+            this.labAllCount.TabIndex = 0;
+            this.labAllCount.Text = "label1";
             // 
             // frmCount
             // 

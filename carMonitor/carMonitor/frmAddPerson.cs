@@ -21,9 +21,16 @@ namespace carMonitor
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             string personName = this.txtPersonName.Text;
-            string sex = this.cboSex.SelectedItem.ToString();
+            string sex = this.cboSex.Text;
             string phoneNum = this.txtPhoneNum.Text;
             DateTime createTime = DateTime.Now;
+
+            // 用户必填字段判断
+            if (String.IsNullOrEmpty(personName) || String.IsNullOrEmpty(sex) || String.IsNullOrEmpty(phoneNum))
+            {
+                MessageBox.Show("请把所有字段填写完整！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             // 添加人员
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
@@ -82,6 +89,11 @@ namespace carMonitor
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmAddPerson_Load(object sender, EventArgs e)
+        {
+            this.cboSex.Text = "男";
         }
     }
 }

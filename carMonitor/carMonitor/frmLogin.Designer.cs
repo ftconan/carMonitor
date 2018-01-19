@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtExit = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnLogin.Location = new System.Drawing.Point(450, 421);
             this.btnLogin.Name = "btnLogin";
@@ -49,6 +51,7 @@
             // 
             // txtExit
             // 
+            this.txtExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtExit.Font = new System.Drawing.Font("SimSun", 12F);
             this.txtExit.Location = new System.Drawing.Point(636, 421);
             this.txtExit.Name = "txtExit";
@@ -114,6 +117,7 @@
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

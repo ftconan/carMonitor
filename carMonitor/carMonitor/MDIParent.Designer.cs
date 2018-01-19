@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIParent));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -68,6 +69,7 @@
             this.txtRate = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnMonitor = new System.Windows.Forms.Button();
+            this.StateCheck = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -499,7 +501,7 @@
             // txtRate
             // 
             this.txtRate.Font = new System.Drawing.Font("SimSun", 12F);
-            this.txtRate.Location = new System.Drawing.Point(182, 13);
+            this.txtRate.Location = new System.Drawing.Point(182, 19);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(148, 30);
             this.txtRate.TabIndex = 7;
@@ -509,7 +511,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("SimSun", 12F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(39, 16);
+            this.label1.Location = new System.Drawing.Point(39, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 20);
             this.label1.TabIndex = 6;
@@ -521,13 +523,18 @@
             this.btnMonitor.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMonitor.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnMonitor.ForeColor = System.Drawing.Color.Black;
-            this.btnMonitor.Location = new System.Drawing.Point(357, 9);
+            this.btnMonitor.Location = new System.Drawing.Point(357, 15);
             this.btnMonitor.Name = "btnMonitor";
             this.btnMonitor.Size = new System.Drawing.Size(114, 35);
             this.btnMonitor.TabIndex = 0;
             this.btnMonitor.Text = "开启监控";
             this.btnMonitor.UseVisualStyleBackColor = false;
             this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
+            // 
+            // StateCheck
+            // 
+            this.StateCheck.Interval = 6000;
+            this.StateCheck.Tick += new System.EventHandler(this.StateCheck_Tick);
             // 
             // MDIParent
             // 
@@ -630,6 +637,7 @@
         private System.Windows.Forms.TextBox txtRate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMonitor;
+        private System.Windows.Forms.Timer StateCheck;
     }
 }
 

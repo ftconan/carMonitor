@@ -43,9 +43,17 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvPerson = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.labPageSize = new System.Windows.Forms.Label();
+            this.labAllCount = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerson)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -54,6 +62,7 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.dgvPerson, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -85,9 +94,10 @@
             // 
             // btnBindTag
             // 
+            this.btnBindTag.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBindTag.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnBindTag.ForeColor = System.Drawing.Color.Black;
-            this.btnBindTag.Location = new System.Drawing.Point(315, 9);
+            this.btnBindTag.Location = new System.Drawing.Point(335, 9);
             this.btnBindTag.Name = "btnBindTag";
             this.btnBindTag.Size = new System.Drawing.Size(113, 36);
             this.btnBindTag.TabIndex = 8;
@@ -97,9 +107,10 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(154, 9);
+            this.btnDelete.Location = new System.Drawing.Point(178, 9);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(113, 36);
             this.btnDelete.TabIndex = 7;
@@ -109,9 +120,10 @@
             // 
             // btnSelect
             // 
+            this.btnSelect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSelect.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnSelect.ForeColor = System.Drawing.Color.Black;
-            this.btnSelect.Location = new System.Drawing.Point(1048, 11);
+            this.btnSelect.Location = new System.Drawing.Point(1062, 11);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(88, 36);
             this.btnSelect.TabIndex = 6;
@@ -122,7 +134,7 @@
             // txtPersonName
             // 
             this.txtPersonName.Font = new System.Drawing.Font("SimSun", 12F);
-            this.txtPersonName.Location = new System.Drawing.Point(880, 18);
+            this.txtPersonName.Location = new System.Drawing.Point(894, 18);
             this.txtPersonName.Name = "txtPersonName";
             this.txtPersonName.Size = new System.Drawing.Size(148, 30);
             this.txtPersonName.TabIndex = 5;
@@ -132,7 +144,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("SimSun", 12F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(785, 19);
+            this.label1.Location = new System.Drawing.Point(799, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 20);
             this.label1.TabIndex = 4;
@@ -140,9 +152,10 @@
             // 
             // btnOutput
             // 
+            this.btnOutput.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOutput.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnOutput.ForeColor = System.Drawing.Color.Black;
-            this.btnOutput.Location = new System.Drawing.Point(639, 9);
+            this.btnOutput.Location = new System.Drawing.Point(654, 9);
             this.btnOutput.Name = "btnOutput";
             this.btnOutput.Size = new System.Drawing.Size(123, 36);
             this.btnOutput.TabIndex = 3;
@@ -152,9 +165,10 @@
             // 
             // btnImport
             // 
+            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnImport.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnImport.ForeColor = System.Drawing.Color.Black;
-            this.btnImport.Location = new System.Drawing.Point(484, 9);
+            this.btnImport.Location = new System.Drawing.Point(500, 9);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(113, 36);
             this.btnImport.TabIndex = 2;
@@ -164,9 +178,10 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(25, 9);
+            this.btnAdd.Location = new System.Drawing.Point(56, 9);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 36);
             this.btnAdd.TabIndex = 0;
@@ -205,6 +220,87 @@
             this.dgvPerson.Size = new System.Drawing.Size(1156, 462);
             this.dgvPerson.TabIndex = 1;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.linkLabel4);
+            this.panel2.Controls.Add(this.linkLabel3);
+            this.panel2.Controls.Add(this.linkLabel2);
+            this.panel2.Controls.Add(this.linkLabel1);
+            this.panel2.Controls.Add(this.labPageSize);
+            this.panel2.Controls.Add(this.labAllCount);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 529);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1156, 53);
+            this.panel2.TabIndex = 7;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(1052, 16);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(69, 20);
+            this.linkLabel4.TabIndex = 5;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "下一页";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Location = new System.Drawing.Point(911, 15);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(69, 20);
+            this.linkLabel3.TabIndex = 4;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "上一页";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(746, 16);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(89, 20);
+            this.linkLabel2.TabIndex = 3;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "最后一页";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(593, 16);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(69, 20);
+            this.linkLabel1.TabIndex = 2;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "第一页";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // labPageSize
+            // 
+            this.labPageSize.AutoSize = true;
+            this.labPageSize.ForeColor = System.Drawing.Color.Black;
+            this.labPageSize.Location = new System.Drawing.Point(191, 15);
+            this.labPageSize.Name = "labPageSize";
+            this.labPageSize.Size = new System.Drawing.Size(69, 20);
+            this.labPageSize.TabIndex = 1;
+            this.labPageSize.Text = "label4";
+            this.labPageSize.Click += new System.EventHandler(this.labPageSize_Click);
+            // 
+            // labAllCount
+            // 
+            this.labAllCount.AutoSize = true;
+            this.labAllCount.ForeColor = System.Drawing.Color.Black;
+            this.labAllCount.Location = new System.Drawing.Point(50, 15);
+            this.labAllCount.Name = "labAllCount";
+            this.labAllCount.Size = new System.Drawing.Size(69, 20);
+            this.labAllCount.TabIndex = 0;
+            this.labAllCount.Text = "label1";
+            this.labAllCount.Click += new System.EventHandler(this.labAllCount_Click);
+            // 
             // frmPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -218,6 +314,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerson)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -235,5 +333,12 @@
         private System.Windows.Forms.DataGridView dgvPerson;
         private System.Windows.Forms.Button btnBindTag;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label labPageSize;
+        private System.Windows.Forms.Label labAllCount;
     }
 }

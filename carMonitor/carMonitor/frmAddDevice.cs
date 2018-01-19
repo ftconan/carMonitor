@@ -24,6 +24,13 @@ namespace carMonitor
             string deviceId = this.txtDeviceId.Text;
             DateTime dateTime = DateTime.Now;
 
+            // 用户必填字段判断
+            if (String.IsNullOrEmpty(deviceName) || String.IsNullOrEmpty(deviceId))
+            {
+                MessageBox.Show("请把所有字段填写完整！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             // 添加设备
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接

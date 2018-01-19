@@ -22,7 +22,14 @@ namespace carMonitor
         {
             string userName = this.txtName.Text;
             string password = this.txtPassword.Text;
-            string grade = this.cboGrade.SelectedItem.ToString();
+            string grade = this.cboGrade.Text;
+
+            // 用户必填字段判断
+            if (String.IsNullOrEmpty(userName) || String.IsNullOrEmpty(password) || String.IsNullOrEmpty(grade))
+            {
+                MessageBox.Show("请把所有字段填写完整！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             // 添加用户
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
@@ -92,6 +99,11 @@ namespace carMonitor
         private void cboGrade_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmAddUser_Load(object sender, EventArgs e)
+        {
+            this.cboGrade.Text = "管理员";
         }
     }
 }

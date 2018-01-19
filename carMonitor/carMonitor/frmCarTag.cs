@@ -30,7 +30,7 @@ namespace carMonitor
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
             con.Open();                                                     //开启连接
-            string strcmd = "select tagNum from tag where tagType='车辆标签' and tagState='未绑定'";
+            string strcmd = "select tagNum from tag where tagType='车辆标签'";
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
             MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
             try
@@ -59,30 +59,24 @@ namespace carMonitor
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             string carNum = this.labelCardNum.Text;
-            string tagId;
-            // 判断cboTag是否为空
-            if (!String.IsNullOrEmpty(this.cboTag.Text))
+            string tagId = this.cboTag.Text;
+
+            // 用户必填字段判断
+            if (String.IsNullOrEmpty(tagId))
             {
-                tagId = this.cboTag.Text;
-            }
-            else
-            {
-                tagId = this.cboTag.SelectedItem.ToString();
+                MessageBox.Show("请把所有字段填写完整！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
 
             // 绑定标签
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
             con.Open();                                                     //开启连接
-
             string strcmd = String.Format("update electriccar set tagId='{0}' where carNum='{1}'", tagId, carNum);
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
-
-            // 修改标签状态，改成已绑定
-            string strcmd1 = String.Format("update tag set tagState='已绑定' where tagNum='{0}'", tagId);
-            MySqlCommand cmd1 = new MySqlCommand(strcmd1, con);
             try
             {
+                #region
                 int count = cmd.ExecuteNonQuery();
                 if (count > 0)
                 {
@@ -96,16 +90,7 @@ namespace carMonitor
                     MessageBox.Show("绑定标签失败！", "绑定失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
-                cmd1.ExecuteNonQuery();
-
-                // 如果车辆已经绑定过标签，把已经绑定的标签设成未绑定
-                string bindTag = ((frmCar)this.Owner).bindTag;
-                if (!String.IsNullOrEmpty(bindTag))
-                {
-                    string strcmd2 = String.Format("update tag set tagState='未绑定' where tagNum='{0}'", bindTag);
-                    MySqlCommand cmd2 = new MySqlCommand(strcmd2, con);
-                    cmd2.ExecuteNonQuery();
-                }
+                #endregion
             }
             catch (Exception ex)
             {

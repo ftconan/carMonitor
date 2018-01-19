@@ -48,7 +48,6 @@ namespace carMonitor
                     grade = dt.Rows[0]["grade"].ToString();
                     if (txtName.Text.Equals(userName) && txtPassword.Text.Equals(password))
                     {
-                        MessageBox.Show("欢迎进入!", "登录成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MDIParent mdi = new MDIParent();
                         this.Hide();
                         // 传递grade

@@ -18,6 +18,8 @@ namespace carMonitor
             InitializeComponent();
         }
 
+        private int count;
+
         private void frmProtect_Load(object sender, EventArgs e)
         {
             getProtect();
@@ -31,36 +33,54 @@ namespace carMonitor
             string endTime = this.dateTimePicker2.Text;
             DateTime createTime = DateTime.Now;
 
-            // 添加布防
-            string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
-            MySqlConnection con = new MySqlConnection(str);                 //实例化链接
-            con.Open();                                                     //开启连接
-            string strcmd = String.Format("insert into protection (protectName,startTime,endTime,createTime)" + "values('{0}','{1}','{2}','{3}')", protectName, startTime, endTime, createTime);
-            MySqlCommand cmd = new MySqlCommand(strcmd, con);
-            try
+            // 用户必填字段判断
+            if (String.IsNullOrEmpty(protectName))
             {
-                int count = cmd.ExecuteNonQuery();
-                if (count > 0)
+                MessageBox.Show("请把所有字段填写完整！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // 只能添加两条布防信息
+            if (count == 2)
+            {
+                MessageBox.Show("最多只能添加两条布防信息！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                // 添加布防
+                #region
+                string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+                MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+                con.Open();                                                     //开启连接
+                string strcmd = String.Format("insert into protection (protectName,startTime,endTime,createTime)" + "values('{0}','{1}','{2}','{3}')", protectName, startTime, endTime, createTime);
+                MySqlCommand cmd = new MySqlCommand(strcmd, con);
+                try
                 {
-                    MessageBox.Show("添加布防成功！", "添加成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // 调用getProtect刷新
-                    getProtect();
-                }
-                else
-                {
-                    MessageBox.Show("添加布防失败！", "添加失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("添加布防成功！", "添加成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // 调用getProtect刷新
+                        getProtect();
+                    }
+                    else
+                    {
+                        MessageBox.Show("添加布防失败！", "添加失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
 
                 }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            finally
-            {
-                con.Close();
-                con.Dispose();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                finally
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+                #endregion
             }
         }
 
@@ -122,6 +142,9 @@ namespace carMonitor
             // 显示年月日时分秒
             dgvProtect.Columns[4].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             con.Close();
+
+            // 获取布防消息条数
+            count = dt.Rows.Count;
         }
     }
 }

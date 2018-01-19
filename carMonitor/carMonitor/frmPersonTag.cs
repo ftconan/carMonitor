@@ -30,7 +30,9 @@ namespace carMonitor
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
             con.Open();                                                     //开启连接
-            string strcmd = "select tagNum from tag where tagType='人员标签' and tagState='未绑定'";
+
+            // 查询出未绑定人员的标签，并且标签非空
+            string strcmd = "select tagNum from tag where tagNum not in (select tagId from person where tagId!='') and tagType='人员标签'";
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
             MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
             try
@@ -59,7 +61,14 @@ namespace carMonitor
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             string personName = this.labPersonName.Text;
-            string tagId = this.cboTag.SelectedItem.ToString();
+            string tagId = this.cboTag.Text;
+
+            // 用户必填字段判断
+            if (String.IsNullOrEmpty(personName) || String.IsNullOrEmpty(tagId))
+            {
+                MessageBox.Show("请把所有字段填写完整！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             // 绑定标签
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
@@ -68,10 +77,6 @@ namespace carMonitor
 
             string strcmd = String.Format("update person set tagId='{1}' where personName='{0}'", personName, tagId);
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
-
-            // 修改标签状态，改成已绑定
-            string strcmd1 = String.Format("update tag set tagState='已绑定' where tagNum='{0}'", tagId);
-            MySqlCommand cmd1 = new MySqlCommand(strcmd1, con);
             try
             {
                 int count = cmd.ExecuteNonQuery();
@@ -86,16 +91,6 @@ namespace carMonitor
                 {
                     MessageBox.Show("绑定标签失败！", "绑定失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }
-                cmd1.ExecuteNonQuery();
-
-                // 如果用户已经绑定过标签，把已经绑定的标签设成未绑定
-                string bindTag = ((frmPerson)this.Owner).bindTag;
-                if (!String.IsNullOrEmpty(bindTag))
-                {
-                    string strcmd2 = String.Format("update tag set tagState='未绑定' where tagNum='{0}'", bindTag);
-                    MySqlCommand cmd2 = new MySqlCommand(strcmd2, con);
-                    cmd2.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)

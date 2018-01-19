@@ -58,6 +58,7 @@
             // 
             // btnConfirm
             // 
+            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirm.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnConfirm.Location = new System.Drawing.Point(65, 338);
             this.btnConfirm.Name = "btnConfirm";
@@ -69,6 +70,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnExit.Location = new System.Drawing.Point(252, 338);
             this.btnExit.Name = "btnExit";
@@ -114,7 +116,9 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.label1);
             this.Name = "frmAddTag";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加标签";
+            this.Load += new System.EventHandler(this.frmAddTag_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

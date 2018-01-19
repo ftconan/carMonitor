@@ -67,7 +67,8 @@ namespace carMonitor
 
             this.labAllCount.Text = "共" + pagecount.ToString() + "页";
             // 分页显示函数
-            pageShow(1,10);
+            num = 1;
+            pageShow(1,20);
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -84,7 +85,7 @@ namespace carMonitor
                 // 如果carTag为空，查询所有
                 if (String.IsNullOrEmpty(carNum))
                 {
-                    strcmd = "select * from history";
+                    strcmd = "select * from history order by createTime desc";
                 }
                 else
                 {
@@ -96,7 +97,7 @@ namespace carMonitor
                 // 如果carTag为空，查询所有
                 if (String.IsNullOrEmpty(carNum))
                 {
-                    strcmd = "select * from history";
+                    strcmd = "select * from history order by createTime desc";
                 }
                 else
                 {
@@ -117,6 +118,26 @@ namespace carMonitor
                 dgvCount.Columns[3].HeaderCell.Value = "车辆标签号";
                 dgvCount.Columns[4].HeaderCell.Value = "车牌号";
                 dgvCount.Columns[5].HeaderCell.Value = "创建时间";
+                // 显示年月日时分秒
+                dgvCount.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
+
+                // 页数计算
+                allCount = dt.Rows.Count;
+                pagecount = allCount % pagesize;
+                // 只能显示第一夜，判断是否整除
+                if (pagecount == 0)
+                {
+                    pagecount = allCount / pagesize;
+                }
+                else
+                {
+                    pagecount = allCount / pagesize + 1;
+                }
+
+                this.labAllCount.Text = "共" + pagecount.ToString() + "页";
+                // 分页显示函数
+                num = 1;
+                pageShow(1, 20);
             }
             catch (Exception ex)
             {
@@ -130,12 +151,33 @@ namespace carMonitor
         }
 
         // 分页显示函数
-        private void pageShow(int start, int end)
+        private void pageShow(int num, int pagecount)
         {
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
             con.Open();                                                     //开启连接
-            string strcmd = "select * from history order by createTime desc limit " + (pagesize * (num - 1))+", "+pagesize+"";
+
+            // 条件查询和全部查询
+            string carNum = this.txtCount.Text;
+            string startTime = this.dateTimePicker1.Text;
+            string endTime = this.dateTimePicker2.Text;
+            string strcmd;
+            // 如果carTag为空，查询所有
+            if (!String.IsNullOrEmpty(carNum))
+            {
+                if (radioCar.Checked)
+                {
+                    strcmd = String.Format("select * from history where carNum like '%{0}%' and createTime between '{1}' and '{2}' order by createTime desc limit " + (pagesize * (num - 1)) + ", " + pagesize + "", carNum, startTime, endTime);
+                }
+                else
+                {
+                    strcmd = String.Format("select * from history where personName like '%{0}%' and createTime between '{1}' and '{2}'order by createTime desc limit " + (pagesize * (num - 1)) + ", " + pagesize + "", carNum, startTime, endTime);
+                }
+            }
+            else
+            {
+                strcmd = "select * from history order by createTime desc limit " + (pagesize * (num - 1)) + ", " + pagesize + "";
+            }
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
             MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -168,7 +210,14 @@ namespace carMonitor
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             num = pagecount;
-            pageShow(num - 1, pagesize);
+            if (num > 0)
+            {
+                pageShow(num, pagesize);
+            }
+            else
+            {
+                MessageBox.Show("现在最后一页记录！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         // 上一页

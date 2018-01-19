@@ -21,6 +21,12 @@ namespace carMonitor
             InitializeComponent();
         }
 
+        //行号，规定其索引初始值为1
+        private int num = 1;
+        int pagesize = 20;
+        int allCount = 0;
+        int pagecount = 0;
+
         private void frmPerson_Load(object sender, EventArgs e)
         {
             getPerson();
@@ -35,7 +41,7 @@ namespace carMonitor
             string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
             MySqlConnection con = new MySqlConnection(str);                 //实例化链接
             con.Open();                                                     //开启连接
-            string strcmd = "select * from person";
+            string strcmd = "select * from person order by createTime desc";
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
             MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -51,6 +57,24 @@ namespace carMonitor
             // 显示年月日时分秒
             dgvPerson.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
             con.Close();
+
+            // 页数计算
+            allCount = dt.Rows.Count;
+            pagecount = allCount % pagesize;
+            // 只能显示第一夜，判断是否整除
+            if (pagecount == 0)
+            {
+                pagecount = allCount / pagesize;
+            }
+            else
+            {
+                pagecount = allCount / pagesize + 1;
+            }
+
+            this.labAllCount.Text = "共" + pagecount.ToString() + "页";
+            // 分页显示函数
+            num = 1;
+            pageShow(1, 20);
         }
 
         private void btnOutput_Click(object sender, EventArgs e)
@@ -157,15 +181,11 @@ namespace carMonitor
                             DataSet ds = new DataSet();
                             ada.Fill(ds);
                             DataTable dt1 = ds.Tables[0];
-                            if (ds.Tables[0].Rows.Count <= 0)
+                            if (ds.Tables[0].Rows.Count == 0)
                             {
-                                // 如果标签号不为空，修改标签状态为已绑定
+                                // 如果标签号不为空
                                 if (!String.IsNullOrEmpty(tagId))
                                 {
-                                    string strcmd2 = String.Format("update tag set tagState='已绑定' where tagNum='{0}'", tagId);
-                                    MySqlCommand cmd2 = new MySqlCommand(strcmd2, con);
-                                    cmd2.ExecuteNonQuery();
-
                                     string sql = String.Format("insert into person (tagId,personName,sex,phoneNum,createTime)" + "values('{0}','{1}','{2}','{3}','{4}')", tagId, personName, sex, phoneNum, createTime);
                                     MySqlCommand msd = new MySqlCommand(sql, con);
                                     msd.ExecuteNonQuery();
@@ -180,10 +200,11 @@ namespace carMonitor
                         }
 
                         getPerson();
+                        MessageBox.Show("人员信息成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("请导入正确人员信息,请检查人员绑定标签是否存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     finally
                     {
@@ -204,46 +225,49 @@ namespace carMonitor
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
-            MySqlConnection con = new MySqlConnection(str);                 //实例化链接
-            con.Open();                                                     //开启连接
-            try
+            DialogResult dr = MessageBox.Show("确定要删除人员?车辆信息将被同时删除", "提示", MessageBoxButtons.OKCancel);
+            if (dr == DialogResult.OK)
             {
-                int n = dgvPerson.SelectedRows.Count;//选中的行数
-                if (n > 0)
+                #region
+                string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+                MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+                con.Open();                                                     //开启连接
+                try
                 {
-                    for (int i = 0; i < n; i++)
+                    int n = dgvPerson.SelectedRows.Count;//选中的行数
+                    if (n > 0)
                     {
-                        // 如果用户被删除，把已经绑定的标签设成未绑定
-                        bindTag = dgvPerson.SelectedRows[i].Cells[1].Value.ToString();
-                        if (!String.IsNullOrEmpty(bindTag))
+                        for (int i = 0; i < n; i++)
                         {
-                            string strcmd2 = String.Format("update tag set tagState='未绑定' where tagNum='{0}'", bindTag);
-                            MySqlCommand cmd2 = new MySqlCommand(strcmd2, con);
-                            cmd2.ExecuteNonQuery();
-                        }
+                            // 删除车辆信息
+                            string strcmd1 = String.Format("delete from electriccar where personId='{0}'", bindTag);
+                            MySqlCommand cmd1 = new MySqlCommand(strcmd1, con);
+                            cmd1.ExecuteNonQuery();
 
-                        string id = dgvPerson.SelectedRows[i].Cells[0].Value.ToString();
-                        string strcmd = String.Format("delete from person where id='{0}'", id);
-                        MySqlCommand cmd = new MySqlCommand(strcmd, con);
-                        cmd.ExecuteNonQuery();
+                            // 删除人员
+                            string id = dgvPerson.SelectedRows[i].Cells[0].Value.ToString();
+                            string strcmd = String.Format("delete from person where id='{0}'", id);
+                            MySqlCommand cmd = new MySqlCommand(strcmd, con);
+                            cmd.ExecuteNonQuery();
+                        }
+                        getPerson();
+                        MessageBox.Show("删除人员成功！", "删除成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    getPerson();
-                    MessageBox.Show("删除人员成功！", "删除成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                    {
+                        MessageBox.Show("请选中要删除的人员！", "删除失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("请选中要删除的人员！", "删除失败", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "操作数据库出错", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            finally
-            {
-                con.Close();
-                con.Dispose();
+                finally
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+                #endregion
             }
         }
 
@@ -274,11 +298,11 @@ namespace carMonitor
             // 如果personName为空，查询所有
             if (String.IsNullOrEmpty(personName))
             {
-                strcmd = "select * from person";
+                strcmd = "select * from person order by createTime desc";
             }
             else
             {
-                strcmd = String.Format("select * from person where personName like '%{0}%'", personName);
+                strcmd = String.Format("select * from person where personName like '%{0}%' order by createTime desc", personName);
             }
             MySqlCommand cmd = new MySqlCommand(strcmd, con);
             MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
@@ -296,6 +320,24 @@ namespace carMonitor
                 dgvPerson.Columns[5].HeaderCell.Value = "创建时间";
                 // 显示年月日时分秒
                 dgvPerson.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd hh:mm:ss";
+
+                // 页数计算
+                allCount = dt.Rows.Count;
+                pagecount = allCount % pagesize;
+                // 只能显示第一夜，判断是否整除
+                if (pagecount == 0)
+                {
+                    pagecount = allCount / pagesize;
+                }
+                else
+                {
+                    pagecount = allCount / pagesize + 1;
+                }
+
+                this.labAllCount.Text = "共" + pagecount.ToString() + "页";
+                // 分页显示函数
+                num = 1;
+                pageShow(1, 20);
             }
             catch (Exception ex)
             {
@@ -306,6 +348,114 @@ namespace carMonitor
                 con.Close();
                 con.Dispose();
             }
+        }
+
+        // 分页显示函数
+        private void pageShow(int num, int pagecount)
+        {
+            string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+            MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+            con.Open();                                                     //开启连接
+
+            // 条件查询和全部查询
+            string personName = this.txtPersonName.Text;
+            string strcmd;
+            // 如果carTag为空，查询所有
+            if (!String.IsNullOrEmpty(personName))
+            {
+                strcmd = string.Format("select * from person where personName like '%{0}%' order by createTime desc limit " + (pagesize * (num - 1)) + ", " + pagesize + "", personName);
+            }
+            else
+            {
+                strcmd = "select * from person order by createTime desc limit " + (pagesize * (num - 1)) + ", " + pagesize + "";
+            }
+            MySqlCommand cmd = new MySqlCommand(strcmd, con);
+            MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            ada.Fill(ds, "person");                                           //查询结果填充数据集
+            DataTable dt = ds.Tables["person"];
+            dgvPerson.DataSource = dt;
+            dgvPerson.Columns[0].HeaderCell.Value = "序号";
+            dgvPerson.Columns[1].HeaderCell.Value = "人员标签号";
+            dgvPerson.Columns[2].HeaderCell.Value = "姓名";
+            dgvPerson.Columns[3].HeaderCell.Value = "性别";
+            dgvPerson.Columns[4].HeaderCell.Value = "电话号码";
+            dgvPerson.Columns[5].HeaderCell.Value = "创建时间";
+            // 显示年月日时分秒
+            dgvPerson.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+            con.Close();
+            ds = null;
+
+            // 更新页码
+            this.labPageSize.Text = "当前第" + num.ToString() + "页";
+        }
+
+        // 第一页
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            num = 1;
+            pageShow(num, pagesize);
+        }
+
+        // 最后一页
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            num = pagecount;
+            if (num > 0)
+            {
+                pageShow(num, pagesize);
+            }
+            else
+            {
+                MessageBox.Show("现在最后一页记录！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        // 上一页
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            num--;
+            if (num > 0)
+            {
+                pageShow(num, pagesize);
+            }
+            else
+            {
+                MessageBox.Show("现在已经是第一页记录！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                num = 1;
+                return;
+            }
+        }
+
+        // 下一页
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            num++;
+            if (num <= pagecount)
+            {
+                pageShow(num, pagesize);
+            }
+            else
+            {
+                MessageBox.Show("现在已经是最后一页记录！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                num = pagecount;
+                return;
+            }
+        }
+
+        private void labAllCount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labPageSize_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

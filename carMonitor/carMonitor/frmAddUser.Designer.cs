@@ -58,6 +58,7 @@
             // 
             // btnConfirm
             // 
+            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirm.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnConfirm.Location = new System.Drawing.Point(117, 331);
             this.btnConfirm.Name = "btnConfirm";
@@ -69,6 +70,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnExit.Location = new System.Drawing.Point(303, 331);
             this.btnExit.Name = "btnExit";
@@ -147,6 +149,7 @@
             this.Name = "frmAddUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加用户";
+            this.Load += new System.EventHandler(this.frmAddUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

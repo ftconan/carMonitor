@@ -56,6 +56,7 @@
             // 
             // btnConfirm
             // 
+            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirm.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnConfirm.Location = new System.Drawing.Point(158, 313);
             this.btnConfirm.Name = "btnConfirm";
@@ -67,6 +68,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.Font = new System.Drawing.Font("SimSun", 12F);
             this.btnExit.Location = new System.Drawing.Point(345, 313);
             this.btnExit.Name = "btnExit";
@@ -114,6 +116,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmAddDevice";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddDevice";
             this.ResumeLayout(false);
             this.PerformLayout();
