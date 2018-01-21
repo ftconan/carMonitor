@@ -113,23 +113,23 @@ namespace carMonitor
 
 
             // 权限判断
-            //string userName = ((frmLogin)this.Owner).userName;
-            //string grade = ((frmLogin)this.Owner).grade;
+            string userName = ((frmLogin)this.Owner).userName;
+            string grade = ((frmLogin)this.Owner).grade;
 
             // 普通用户没有管理功能
-            //if (grade == "普通用户")
-            //{
-            //    this.pictureBox4.Hide();
-            //    this.pictureBox5.Hide();
-            //    this.pictureBox6.Hide();
-            //    this.pictureBox7.Hide();
-            //    this.pictureBox8.Hide();
-            //    this.labTag.Hide();
-            //    this.labPerson.Hide();
-            //    this.labCar.Hide();
-            //    this.labDevice.Hide();
-            //    this.labSystem.Hide();
-            //}
+            if (grade == "普通用户")
+            {
+                this.pictureBox4.Hide();
+                this.pictureBox5.Hide();
+                this.pictureBox6.Hide();
+                this.pictureBox7.Hide();
+                this.pictureBox8.Hide();
+                this.labTag.Hide();
+                this.labPerson.Hide();
+                this.labCar.Hide();
+                this.labDevice.Hide();
+                this.labSystem.Hide();
+            }
 
             // 删除七天前的数据
             delHistory();
