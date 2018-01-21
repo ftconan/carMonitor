@@ -12,6 +12,8 @@ using RfidNet;
 using System.Threading;
 using System.Runtime.InteropServices;
 using System.Speech.Synthesis;
+using Quartz;
+using Quartz.Impl;
 
 namespace carMonitor
 {
@@ -31,6 +33,16 @@ namespace carMonitor
         public bool stopThread = false;
         Dictionary<string, Form> childForms = new Dictionary<string, Form>();
         Form currentChildForm = null;
+        private frmMonitor frm1;
+        private frmAlarm frm2;
+        private frmCount frm3;
+        private frmTag frm4;
+        private frmPerson frm5;
+        private frmCar frm6;
+        private frmDevice frm7;
+        private frmSystem frm8;
+        // 移除消息时间
+        private double removeTime;
 
         public MDIParent()
         {
@@ -45,7 +57,7 @@ namespace carMonitor
             this.StateCheck.Enabled = false;
 
             // 移除tablelayoutpanel中的winform
-            Form frm1 = new frmMonitor(this);   //创建一个子窗体
+            frm1 = new frmMonitor(this);           //创建一个子窗体
             frm1.MdiParent = this;                 //子窗体在父窗体中显现
             frm1.Dock = DockStyle.Fill;
             frm1.FormBorderStyle = FormBorderStyle.None;
@@ -54,46 +66,46 @@ namespace carMonitor
             currentChildForm = childForms["monitor"];
             currentChildForm.Show();
 
-            Form frm2 = new frmAlarm();               //创建一个子窗体
+            frm2 = new frmAlarm();               //创建一个子窗体
             frm2.MdiParent = this;                 //子窗体在父窗体中显现
             frm2.Dock = DockStyle.Fill;
             frm2.FormBorderStyle = FormBorderStyle.None;
             frm2.Hide();
             childForms.Add("alarm", frm2);
 
-            Form frm3 = new frmCount();               //创建一个子窗体
+            frm3 = new frmCount();               //创建一个子窗体
             frm3.MdiParent = this;                 //子窗体在父窗体中显现
             frm3.Dock = DockStyle.Fill;
             frm3.FormBorderStyle = FormBorderStyle.None;
             frm3.Hide();
             childForms.Add("count", frm3);
 
-            Form frm4 = new frmTag();               //创建一个子窗体
+            frm4 = new frmTag();               //创建一个子窗体
             frm4.MdiParent = this;                 //子窗体在父窗体中显现
             frm4.Dock = DockStyle.Fill;
             frm4.FormBorderStyle = FormBorderStyle.None;
             frm4.Hide();
             childForms.Add("tag", frm4);
 
-            Form frm5 = new frmPerson();               //创建一个子窗体
+            frm5 = new frmPerson();               //创建一个子窗体
             frm5.MdiParent = this;                 //子窗体在父窗体中显现
             frm5.Dock = DockStyle.Fill;
             frm5.FormBorderStyle = FormBorderStyle.None;
             childForms.Add("person", frm5);
 
-            Form frm6 = new frmCar();               //创建一个子窗体
+            frm6 = new frmCar();               //创建一个子窗体
             frm6.MdiParent = this;                 //子窗体在父窗体中显现
             frm6.Dock = DockStyle.Fill;
             frm6.FormBorderStyle = FormBorderStyle.None;
             childForms.Add("car", frm6);
 
-            Form frm7 = new frmDevice();               //创建一个子窗体
+            frm7 = new frmDevice();               //创建一个子窗体
             frm7.MdiParent = this;                 //子窗体在父窗体中显现
             frm7.Dock = DockStyle.Fill;
             frm7.FormBorderStyle = FormBorderStyle.None;
             childForms.Add("device", frm7);
 
-            Form frm8 = new frmSystem();        //创建一个子窗体
+            frm8 = new frmSystem();        //创建一个子窗体
             frm8.MdiParent = this;                 //子窗体在父窗体中显现
             frm8.Dock = DockStyle.Fill;
             frm8.FormBorderStyle = FormBorderStyle.None;
@@ -101,23 +113,26 @@ namespace carMonitor
 
 
             // 权限判断
-            string userName = ((frmLogin)this.Owner).userName;
-            string grade = ((frmLogin)this.Owner).grade;
+            //string userName = ((frmLogin)this.Owner).userName;
+            //string grade = ((frmLogin)this.Owner).grade;
 
             // 普通用户没有管理功能
-            if (grade == "普通用户")
-            {
-                this.pictureBox4.Hide();
-                this.pictureBox5.Hide();
-                this.pictureBox6.Hide();
-                this.pictureBox7.Hide();
-                this.pictureBox8.Hide();
-                this.labTag.Hide();
-                this.labPerson.Hide();
-                this.labCar.Hide();
-                this.labDevice.Hide();
-                this.labSystem.Hide();
-            }
+            //if (grade == "普通用户")
+            //{
+            //    this.pictureBox4.Hide();
+            //    this.pictureBox5.Hide();
+            //    this.pictureBox6.Hide();
+            //    this.pictureBox7.Hide();
+            //    this.pictureBox8.Hide();
+            //    this.labTag.Hide();
+            //    this.labPerson.Hide();
+            //    this.labCar.Hide();
+            //    this.labDevice.Hide();
+            //    this.labSystem.Hide();
+            //}
+
+            // 删除七天前的数据
+            delHistory();
 
         }
 
@@ -128,6 +143,7 @@ namespace carMonitor
             tableLayoutPanel2.Controls.Add(childForms["monitor"]);
             currentChildForm = childForms["monitor"];
             currentChildForm.Show();
+            frm1.getHistory();
         }
 
         // 报警管理
@@ -136,6 +152,7 @@ namespace carMonitor
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.Controls.Add(childForms["alarm"]);
             childForms["alarm"].Show();
+            frm2.getAlarm();
         }
 
         // 查询统计
@@ -144,6 +161,7 @@ namespace carMonitor
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.Controls.Add(childForms["count"]);
             childForms["count"].Show();
+            frm3.getHistory();
         }
 
         // 标签管理
@@ -152,6 +170,7 @@ namespace carMonitor
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.Controls.Add(childForms["tag"]);
             childForms["tag"].Show();                      //子窗体显现
+            frm4.getTag();
         }
 
         // 人员管理
@@ -160,6 +179,7 @@ namespace carMonitor
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.Controls.Add(childForms["person"]);
             childForms["person"].Show();
+            frm5.getPerson();
         }
 
         // 车辆管理
@@ -168,6 +188,7 @@ namespace carMonitor
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.Controls.Add(childForms["car"]);
             childForms["car"].Show();
+            frm6.getCar();
         }
 
         // 基站管理
@@ -176,6 +197,7 @@ namespace carMonitor
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.Controls.Add(childForms["device"]);
             childForms["device"].Show();
+            frm7.getDevice();
         }
 
         // 系统管理
@@ -184,6 +206,7 @@ namespace carMonitor
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.Controls.Add(childForms["system"]);
             childForms["system"].Show();                      //子窗体显现
+            frm8.getUser();
         }
 
         private void btnMonitor_Click(object sender, EventArgs e)
@@ -194,12 +217,14 @@ namespace carMonitor
                 // 判断用户是否设置采集频率
                 if (!String.IsNullOrEmpty(this.txtRate.Text))
                 {
-                    this.Rate = int.Parse(this.txtRate.Text) * 1000;
+                    Rate = int.Parse(this.txtRate.Text) * 1000;
+                    removeTime = Rate * 0.001 * 1.5;
                     MessageBox.Show("采集频率设置成功！", "设置成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    this.Rate = 6000;
+                    Rate = 6000;
+                    removeTime = Rate * 0.001 * 1.5;
                 }
                 // 监控进程
                 stopThread = false;
@@ -222,6 +247,7 @@ namespace carMonitor
                 }
                 threadPro = new Thread(new ThreadStart(ThreadPro));
                 threadPro.Start();
+                StateCheck.Interval = Rate;
                 StateCheck.Enabled = true;
             }
             else
@@ -421,15 +447,18 @@ namespace carMonitor
         {
             lock (listLock)
             {
+                // 移除6s前mDMsg
                 for (int i = 0; i < mDMsg.Count; i++)
                 {
                     TimeSpan ts = DateTime.Now - mDMsg[i].ReciveDt;
-                    if (ts.TotalSeconds > 6)
+                    if (ts.TotalSeconds > removeTime)
                     {
                         mDMsg.RemoveAt(i);
                         i--;
                     }
                 }
+
+                // carTags keys
                 Dictionary<string, List<string>> carTags = new Dictionary<string, List<string>>();
                 for (int i = 0; i < mDMsg.Count; i++)
                 {
@@ -439,6 +468,8 @@ namespace carMonitor
                             carTags.Add(mDMsg[i].TagId.ToString(), new List<string>());
                     }
                 }
+
+                // 添加人员标签到carTags
                 List<string> test = new List<string>(carTags.Keys);
                 for (int i = 0; i < test.Count; i++)
                 {
@@ -464,6 +495,7 @@ namespace carMonitor
                         // 判断是否在布防时间内
                         string strNow = DateTime.Now.ToString("T");
                         DateTime now = Convert.ToDateTime(strNow);
+                        #region
                         if (timeList.Count == 2)
                         {
                             if (!(now >= Convert.ToDateTime(timeList[0]) && now <= Convert.ToDateTime(timeList[1])))
@@ -497,6 +529,7 @@ namespace carMonitor
                             SpeechSynthesizer synth = new SpeechSynthesizer();
                             synth.Speak("请注意:" + tagNames[test[i]] + "电瓶车可能被偷盗!");
                         }
+                        #endregion
                     }
                     else
                     {
@@ -509,7 +542,6 @@ namespace carMonitor
                         }
                     }
                 }
-
             }
         }
         protected override void WndProc(ref Message m)
@@ -528,6 +560,47 @@ namespace carMonitor
                 System.Environment.Exit(System.Environment.ExitCode);
             }
             base.WndProc(ref m);
+        }
+
+        // 删除作业
+        public class JobInterest : IJob
+        {
+            public Task Execute(IJobExecutionContext context)
+            {
+                return Task.Run(() =>
+                {
+                    string str = "Server=localhost;User ID=root;Password=root;Database=car;Charset=utf8";
+                    MySqlConnection con = new MySqlConnection(str);                 //实例化链接
+                    con.Open();                                     //开启连接
+                    string strcmd = "delete from history where to_days(now())-to_days(createTime)>7";
+                    MySqlCommand cmd = new MySqlCommand(strcmd, con);
+                    int count = cmd.ExecuteNonQuery();
+                    Console.WriteLine(count);
+                });
+            }
+        }
+
+        // 定时任务
+        public void delHistory()
+        {
+            var scheduler = StdSchedulerFactory.GetDefaultScheduler().GetAwaiter().GetResult();
+            //创建触发条件
+            ITrigger trigger = TriggerBuilder.Create()
+            .WithIdentity("InterestTrigger", "Interest")
+            .StartNow()
+            .WithDailyTimeIntervalSchedule(t =>
+            {
+                t.OnEveryDay();//每天都执行
+                t.StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(20, 15));//设置执行的开始时间
+                t.WithRepeatCount(0);//设置总共执行次数
+            })
+            .Build();
+            //创建作业内容
+            IJobDetail job = JobBuilder.Create(typeof(JobInterest))
+           .WithIdentity("InterestJob", "Interest")
+           .Build();
+            scheduler.ScheduleJob(job, trigger);
+            scheduler.Start();
         }
     }
 }

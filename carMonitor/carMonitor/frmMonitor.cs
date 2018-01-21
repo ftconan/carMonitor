@@ -59,11 +59,11 @@ namespace carMonitor
             getHistory();
         }
 
-        // 获取最新的100条历史信息，即实时数据
+        // 获取最新的50条历史信息，即实时数据
         public void getHistory()
         {
             DBConnection();
-            string strcmd = "select * from history order by createTime desc limit 100";
+            string strcmd = "select * from history order by createTime desc limit 50";
             ExeCommand(strcmd);
             MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
