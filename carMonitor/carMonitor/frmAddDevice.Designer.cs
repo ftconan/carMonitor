@@ -117,7 +117,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmAddDevice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAddDevice";
+            this.Text = "添加基站";
             this.ResumeLayout(false);
             this.PerformLayout();
 
