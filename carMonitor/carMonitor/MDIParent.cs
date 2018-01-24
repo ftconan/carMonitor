@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RfidNet;
 using System.Threading;
-using System.Runtime.InteropServices;
-using System.Speech.Synthesis;
+//using System.Speech.Synthesis;
 using Quartz;
 using Quartz.Impl;
 
@@ -133,7 +132,6 @@ namespace carMonitor
 
             // 删除七天前的数据
             delHistory();
-
         }
 
         // 实时监控
@@ -504,8 +502,10 @@ namespace carMonitor
     "values('{0}','{1}','{2}','{3}','{4}')", test[i], tagNames[test[i]], "警告", "电瓶车可能被偷盗", DateTime.Now);
                                 ExeCommand(strcmd);
 
-                                SpeechSynthesizer synth = new SpeechSynthesizer();
-                                synth.Speak("请注意:" + tagNames[test[i]] + "电瓶车可能被偷盗!");
+                                //SpeechSynthesizer synth = new SpeechSynthesizer();
+                                //synth.Speak("请注意:" + tagNames[test[i]] + "电瓶车可能被偷盗!");
+
+                                playAlarm();
                             }
                         }
                         else if (timeList.Count == 4)
@@ -516,8 +516,10 @@ namespace carMonitor
     "values('{0}','{1}','{2}','{3}','{4}')", test[i], tagNames[test[i]], "警告", "电瓶车可能被偷盗", DateTime.Now);
                                 ExeCommand(strcmd);
 
-                                SpeechSynthesizer synth = new SpeechSynthesizer();
-                                synth.Speak("请注意:" + tagNames[test[i]] + "电瓶车可能被偷盗!");
+                                //SpeechSynthesizer synth = new SpeechSynthesizer();
+                                //synth.Speak("请注意:" + tagNames[test[i]] + "电瓶车可能被偷盗!");
+
+                                playAlarm();
                             }
                         }
                         else
@@ -526,8 +528,10 @@ namespace carMonitor
     "values('{0}','{1}','{2}','{3}','{4}')", test[i], tagNames[test[i]], "警告", "电瓶车可能被偷盗", DateTime.Now);
                             ExeCommand(strcmd);
 
-                            SpeechSynthesizer synth = new SpeechSynthesizer();
-                            synth.Speak("请注意:" + tagNames[test[i]] + "电瓶车可能被偷盗!");
+                            //SpeechSynthesizer synth = new SpeechSynthesizer();
+                            //synth.Speak("请注意:" + tagNames[test[i]] + "电瓶车可能被偷盗!");
+
+                            playAlarm();
                         }
                         #endregion
                     }
@@ -601,6 +605,15 @@ namespace carMonitor
            .Build();
             scheduler.ScheduleJob(job, trigger);
             scheduler.Start();
+        }
+
+        // 播放报警铃声
+        public void playAlarm()
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            player.SoundLocation = Application.StartupPath + "//alarm.wav";
+            player.Load();
+            player.Play();
         }
     }
 }
